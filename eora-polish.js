@@ -73,7 +73,8 @@
 
     const volume = document.querySelector("#volumeControl");
     if (volume) {
-      const storedVolume = Number(localStorage.getItem("eoraVolume"));
+      const storedRaw = localStorage.getItem("eoraVolume");
+      const storedVolume = storedRaw === null ? Number.NaN : Number(storedRaw);
       volume.value = Number.isFinite(storedVolume) && storedVolume >= 0 && storedVolume <= 100 ? String(storedVolume) : "48";
       volume.addEventListener("input", () => localStorage.setItem("eoraVolume", volume.value));
     }
