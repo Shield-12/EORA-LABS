@@ -15,6 +15,38 @@
     if (pages.about) {
       pages.about.lede = "Eora Labs is my living engineering record: a place to show what I have supported, what I am building, how I reason about risk, and how I am progressing toward greater systems and security ownership.";
     }
+
+    if (pages["project-eora"]) {
+      pages["project-eora"].lede = "Eora Lab is an active Windows Server 2025 environment used to turn certification objectives into working infrastructure: Active Directory, DNS, DHCP, Group Policy, Hyper-V, file services, PowerShell administration, and an expanding security-monitoring stack.";
+
+      pages["project-eora"].content += `
+        <section class="section band"><div class="inner">
+          <header class="section-heading reveal"><div><p class="eyebrow">Build log · July 2026</p><h2>Security monitoring is moving from local logs to centralized telemetry.</h2></div><p>This phase is being implemented incrementally on the existing lab hardware. Current milestones are published as validated evidence rather than presented as a finished SOC platform.</p></header>
+          <div class="cards">
+            <article class="card wide reveal" data-tilt>
+              <p class="card-number">SEC-001</p>
+              <span class="status current">Validated</span>
+              <h3>Windows Event Collector foundation</h3>
+              <p>Initialized Windows Event Collector on Windows Server 2025, verified the Windows Event Collector service (<code>Wecsvc</code>) and Windows Remote Management (<code>WinRM</code>) are running automatically, and confirmed the <code>ForwardedEvents</code> channel is enabled.</p>
+              <ul class="tag-list"><li>Windows Server 2025</li><li>WEC</li><li>WinRM</li><li>Event Viewer</li><li>PowerShell</li></ul>
+            </article>
+            <article class="card reveal" data-tilt>
+              <p class="card-number">SEC-002</p>
+              <span class="status">In progress</span>
+              <h3>Domain event forwarding</h3>
+              <p>Next validation: configure a domain-managed source system to forward selected Windows events into the collector and confirm end-to-end delivery in the centralized event log.</p>
+              <ul class="tag-list"><li>WEF</li><li>Group Policy</li><li>Security telemetry</li></ul>
+            </article>
+            <article class="card reveal" data-tilt>
+              <p class="card-number">SEC-003</p>
+              <span class="status">Planned</span>
+              <h3>Security baseline and audit policy</h3>
+              <p>Planned work includes advanced audit policy, Windows LAPS, Defender and firewall validation, PowerShell logging, and documented event-selection criteria for operational and security monitoring.</p>
+              <ul class="tag-list"><li>Audit Policy</li><li>LAPS</li><li>Defender</li><li>Firewall</li></ul>
+            </article>
+          </div>
+        </div></section>`;
+    }
   }
 
   // Remove every narration path before the main application handles it.
