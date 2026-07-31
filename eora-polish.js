@@ -21,7 +21,7 @@
 
       pages["project-eora"].content += `
         <section class="section band"><div class="inner">
-          <header class="section-heading reveal"><div><p class="eyebrow">Build log · July 2026</p><h2>Security monitoring is moving from local logs to centralized telemetry.</h2></div><p>This phase is being implemented incrementally on the existing lab hardware. Current milestones are published as validated evidence rather than presented as a finished SOC platform.</p></header>
+          <header class="section-heading reveal"><div><p class="eyebrow">Build log · July 30, 2026</p><h2>Security monitoring is moving from local logs to centralized telemetry.</h2></div><p>This phase is being implemented incrementally on the existing lab hardware. Current milestones are published as validated evidence rather than presented as a finished SOC platform.</p></header>
           <div class="cards">
             <article class="card wide reveal" data-tilt>
               <p class="card-number">SEC-001</p>
@@ -30,21 +30,31 @@
               <p>Initialized Windows Event Collector on Windows Server 2025, verified the Windows Event Collector service (<code>Wecsvc</code>) and Windows Remote Management (<code>WinRM</code>) are running automatically, and confirmed the <code>ForwardedEvents</code> channel is enabled.</p>
               <ul class="tag-list"><li>Windows Server 2025</li><li>WEC</li><li>WinRM</li><li>Event Viewer</li><li>PowerShell</li></ul>
             </article>
-            <article class="card reveal" data-tilt>
+            <article class="card wide reveal" data-tilt>
               <p class="card-number">SEC-002</p>
-              <span class="status">In progress</span>
-              <h3>Domain event forwarding</h3>
-              <p>Next validation: configure a domain-managed source system to forward selected Windows events into the collector and confirm end-to-end delivery in the centralized event log.</p>
-              <ul class="tag-list"><li>WEF</li><li>Group Policy</li><li>Security telemetry</li></ul>
+              <span class="status current">Validated</span>
+              <h3>Security telemetry baseline</h3>
+              <p>Captured the server's current audit and endpoint-security posture before making policy changes. Microsoft Defender antivirus, antispyware, real-time protection, behavior monitoring, IOAV protection, and network inspection were confirmed enabled.</p>
+              <p>Verified active operational channels with 1,085 PowerShell events, 4,299 Defender events, and 1,690 Windows Firewall events at the time of collection. All Domain, Private, and Public firewall profiles were enabled.</p>
+              <p>The audit baseline also identified deliberate next-step gaps including Process Creation, Sensitive Privilege Use, Directory Service Changes, Group Membership, and additional policy-change auditing.</p>
+              <ul class="tag-list"><li>Audit Policy</li><li>Defender</li><li>PowerShell</li><li>Windows Firewall</li><li>Event Logs</li></ul>
             </article>
             <article class="card reveal" data-tilt>
               <p class="card-number">SEC-003</p>
+              <span class="status">In progress</span>
+              <h3>Advanced audit and firewall policy</h3>
+              <p>Next implementation phase: review the existing EORA baseline security GPO, then centrally configure high-value audit categories and firewall logging through Group Policy instead of one-off local changes.</p>
+              <ul class="tag-list"><li>Group Policy</li><li>Advanced Audit Policy</li><li>Firewall Logging</li></ul>
+            </article>
+            <article class="card reveal" data-tilt>
+              <p class="card-number">SEC-004</p>
               <span class="status">Planned</span>
-              <h3>Security baseline and audit policy</h3>
-              <p>Planned work includes advanced audit policy, Windows LAPS, Defender and firewall validation, PowerShell logging, and documented event-selection criteria for operational and security monitoring.</p>
-              <ul class="tag-list"><li>Audit Policy</li><li>LAPS</li><li>Defender</li><li>Firewall</li></ul>
+              <h3>Centralized event forwarding</h3>
+              <p>Planned validation: forward selected events from domain-managed systems into the collector and confirm end-to-end delivery in the centralized event log.</p>
+              <ul class="tag-list"><li>WEF</li><li>Subscriptions</li><li>Security telemetry</li></ul>
             </article>
           </div>
+          <div class="card-actions reveal" style="margin-top:1.25rem"><a class="button secondary small" target="_blank" rel="noreferrer" href="https://github.com/Shield-12/EORA-LABS/blob/main/docs/eora-security-build-log.md">Read the full security build log on GitHub</a></div>
         </div></section>`;
     }
   }
