@@ -52,11 +52,26 @@ During testing, a standard user account was blocked from logging directly onto t
 
 Detailed documentation is maintained in [`docs/eora-active-directory-password-policy.md`](./eora-active-directory-password-policy.md).
 
+### SEC-004 — Session notes and portfolio documentation standard
+
+Published working notes from the August 7, 2026 build session to preserve the project direction, lab topology, documentation standard, and next validation steps.
+
+The note captures several durable decisions:
+
+- EoraLabs should read primarily as a first-person engineering record.
+- The lab topology should be documented truthfully as a notebook-hosted environment with temporary service consolidation.
+- The domain controller logon message should be treated as a role-separation lesson, not as failed user validation.
+- Unfinished work should be marked as in progress until validated from domain-joined client systems.
+
+Detailed notes are maintained in [`docs/eoralabs-session-notes-2026-08-07.md`](./eoralabs-session-notes-2026-08-07.md).
+
 ## Why this matters
 
 The objective is to move from inspecting logs independently on individual Windows systems toward centralized, repeatable security monitoring. Future phases will use Group Policy to standardize auditing and Windows Event Forwarding to deliver selected endpoint/server events to a central collector.
 
 The identity baseline also connects authentication policy to security operations. Password and lockout controls influence brute-force resistance, account lockout events, service-desk workflow, and the quality of future telemetry.
+
+The session notes preserve project reasoning, not just configuration outputs. That makes the portfolio stronger because reviewers can see the engineering judgment behind the lab decisions.
 
 ## Next
 
