@@ -306,6 +306,82 @@
       content: `${detail(`<h2>Education milestone</h2><p>The associate degree represents persistence through the early professional career and served as the academic bridge to the University of Memphis Management Information Systems program.</p><h3>Career context</h3><p>The degree was completed while the professional foundation was already being built through healthcare IT work. That combination matters: academic progression did not occur in isolation from real operational experience.</p>`,`<h3>Education record</h3><dl><div><dt>Institution</dt><dd>Southwest Tennessee Community College</dd></div><div><dt>Degree</dt><dd>Associate of Science</dd></div><div><dt>Awarded</dt><dd>August 11, 2022</dd></div><div><dt>Location</dt><dd>Memphis, Tennessee</dd></div></dl>`)}${nextLinks([["/education/university-of-memphis/","Next degree","B.B.A. in MIS"],["/experience/alliance-healthcare-services/","Concurrent career foundation","Healthcare IT experience"]])}`
     },
 
+    services: {
+      title: "Pilot Services",
+      eyebrow: "Limited pilot engagements · Memphis area",
+      headline: "Assess first. Then improve <em>what actually matters.</em>",
+      lede: "I accept a limited number of clearly scoped pilot engagements where I can assess, document, standardize, and improve small-organization IT environments without pretending to be a 24/7 managed service provider.",
+      voice: "The Pilot Services page explains limited assessment, documentation, Microsoft 365, endpoint, automation, and infrastructure planning services. Engagements begin with discovery and written scope rather than open-ended production changes.",
+      compact: true,
+      actions: [["mailto:langston.brown03@gmail.com?subject=Eora%20Labs%20Pilot%20Services%20Inquiry&body=Hello%20Langston%2C%0A%0AI%20am%20contacting%20Eora%20Labs%20about%20a%20possible%20IT%20pilot%20engagement.%0A%0AOrganization%3A%0ANumber%20of%20employees/devices%3A%0APrimary%20concern%20or%20goal%3A%0ACurrent%20Microsoft%20365%20environment%20%28if%20known%29%3A%0APreferred%20timeline%3A%0ABest%20contact%20method%3A%0A%0AThank%20you.","Discuss a pilot","primary"],["/projects/eora-lab/","Review technical evidence","secondary"]],
+      content: `
+        ${detail(`
+          <p class="eyebrow">Recommended starting point</p>
+          <h2>Technology Assessment &amp; Modernization Plan</h2>
+          <p>Before I recommend a server, cloud subscription, deployment method, or security product, I first review the environment and identify what the organization actually needs. The goal is a defensible plan, not a predetermined technology sale.</p>
+          <h3>Assessment areas</h3>
+          <ul class="check-list">
+            <li>Users, devices, administrator accounts, and Microsoft 365 licensing</li>
+            <li>Identity, multifactor authentication, onboarding, offboarding, and access-control habits</li>
+            <li>Network, Wi-Fi, file sharing, printing, and remote-access dependencies</li>
+            <li>Endpoint configuration, patching, deployment, and inventory practices</li>
+            <li>Backup, recovery, documentation, and obvious continuity risks</li>
+          </ul>
+          <h3>Client deliverables</h3>
+          <ul class="check-list">
+            <li>Plain-language findings and prioritized risks</li>
+            <li>Current-state technology and responsibility summary</li>
+            <li>Recommended next actions grouped by urgency</li>
+            <li>A separately scoped implementation proposal for approved follow-on work</li>
+          </ul>
+          <div class="callout"><strong>Why begin here?</strong><p>A five-person law office, a clinic, a nonprofit, and a construction company should not receive the same architecture. Discovery prevents unnecessary servers, unsuitable cloud subscriptions, weak permissions, and expensive rework.</p></div>
+        `,`
+          <span class="status current">Accepting limited pilot inquiries</span>
+          <h3>Engagement details</h3>
+          <dl>
+            <div><dt>Initial conversation</dt><dd>No-cost project-fit discussion</dd></div>
+            <div><dt>Pricing</dt><dd>Fixed quote after discovery</dd></div>
+            <div><dt>Initial market</dt><dd>Memphis-area small organizations</dd></div>
+            <div><dt>Delivery model</dt><dd>Defined scope and written deliverables</dd></div>
+            <div><dt>Current limitation</dt><dd>No 24/7 managed support</dd></div>
+          </dl>
+        `)}
+
+        <section class="section"><div class="inner">
+          <header class="section-heading"><div><p class="eyebrow">Scoped service areas</p><h2>Implementation work only after the environment is understood.</h2></div><p>These services may be delivered independently or as follow-on work after an assessment. Architecture and tooling depend on the client's requirements, licensing, risk, and existing systems.</p></header>
+          <div class="cards services-static">
+            <article class="card"><p class="card-number">01</p><h3>Microsoft 365 Identity &amp; Security</h3><p>I can help clean up accounts and licenses, review administrator roles, support MFA rollout, configure mailbox and group basics, and document onboarding/offboarding procedures.</p></article>
+            <article class="card"><p class="card-number">02</p><h3>Documentation &amp; Continuity</h3><p>I can create asset inventories, network diagrams, vendor registers, administrative records, operating procedures, and backup or recovery documentation that reduce single-person knowledge risk.</p></article>
+            <article class="card"><p class="card-number">03</p><h3>Administrative Automation</h3><p>I can build PowerShell-assisted workflows for repeatable provisioning, inventory collection, reporting, software deployment, and routine Windows administration.</p></article>
+            <article class="card"><p class="card-number">04</p><h3>Endpoint Deployment Pilot</h3><p>I can help define device standards, required applications, enrollment procedures, and a limited deployment method, including Intune and Autopilot where licensing and business need justify it.</p></article>
+            <article class="card"><p class="card-number">05</p><h3>Windows Server &amp; Hybrid Planning</h3><p>I can plan Active Directory, DNS, DHCP, file services, and hybrid-management improvements when local infrastructure is genuinely warranted and not just inherited by habit.</p></article>
+            <article class="card"><p class="card-number">06</p><h3>Remediation Project</h3><p>I can execute approved findings as a separate scoped project with validation evidence, handoff documentation, and explicit exclusions.</p></article>
+          </div>
+        </div></section>
+
+        <section class="section band"><div class="inner">
+          ${detail(`
+            <p class="eyebrow">Boundaries</p><h2>Professional scope protects both sides.</h2>
+            <p>I do not present pilot services as a substitute for a full managed service provider, a compliance firm, legal counsel, or an emergency break-fix contract. I also do not make open-ended production changes without written scope, approval, rollback thinking, and a defined validation step.</p>
+            <h3>Not currently offered</h3>
+            <ul class="check-list">
+              <li>24/7 managed support or emergency response retainers</li>
+              <li>Guaranteed HIPAA, legal, insurance, or regulatory compliance outcomes</li>
+              <li>Unscoped production changes or undocumented administrative access</li>
+              <li>Work that requires hiding risk, bypassing authorization, or weakening security controls</li>
+            </ul>
+          `,`
+            <h3>Professional basis</h3><dl>
+              <div><dt>Experience</dt><dd>7+ years across government, healthcare, and field IT</dd></div>
+              <div><dt>Education</dt><dd>B.B.A. Management Information Systems</dd></div>
+              <div><dt>Certifications</dt><dd>CySA+ · Security+ · Network+ · ISC2 CC</dd></div>
+              <div><dt>Operating principle</dt><dd>Assess, document, implement, validate</dd></div>
+            </dl>
+          `)}
+        </div></section>
+      `
+    },
+
     capabilities: {
       title: "Capability Map",
       eyebrow: "Technical and operational value",
