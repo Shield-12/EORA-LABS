@@ -8,10 +8,10 @@
     <section class="section"><div class="inner">
       <header class="section-heading reveal">
         <div>
-          <p class="eyebrow">Security telemetry snapshot · July 30, 2026</p>
+          <p class="eyebrow">Security telemetry snapshot · August 7, 2026</p>
           <h2>Baseline first. Then harden deliberately.</h2>
         </div>
-        <p>Before changing audit and firewall policy, the current Windows Server 2025 security posture was inventoried so later changes can be measured against a known state.</p>
+        <p>Before changing audit, firewall, and identity policy, I inventoried the current Windows Server 2025 security posture so later changes can be measured against a known state.</p>
       </header>
 
       <div class="cards">
@@ -26,6 +26,13 @@
           <p class="card-number">AUDIT</p>
           <h3>Audit-policy gaps identified</h3>
           <p>The baseline showed several high-value controls not yet enabled, including Process Creation, Sensitive Privilege Use, Directory Service Changes, Group Membership, and selected policy-change auditing. These are being evaluated for centralized Group Policy deployment rather than enabled indiscriminately.</p>
+        </article>
+
+        <article class="card reveal" data-tilt>
+          <p class="card-number">IDENTITY</p>
+          <h3>Active Directory password and lockout baseline</h3>
+          <p>I documented an initial authentication hardening pass: complexity enabled, reversible encryption disabled, password history configured, and account lockout set to five invalid attempts with a 30-minute lockout window. Client validation remains in progress.</p>
+          <div class="card-actions"><a class="button secondary small" target="_blank" rel="noreferrer" href="https://github.com/Shield-12/EORA-LABS/blob/main/docs/eora-active-directory-password-policy.md">View identity baseline</a></div>
         </article>
 
         <article class="card reveal" data-tilt>
