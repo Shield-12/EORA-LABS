@@ -81,11 +81,11 @@
       </header>
       <div class="audio-dock" id="audioDock">
         <button class="audio-button" id="audioToggle" type="button" aria-pressed="false" aria-label="Enable ambient music and interface sounds"><span class="audio-meter" aria-hidden="true"><i></i><i></i><i></i></span><span class="audio-label" id="audioLabel">Audio off</span></button>
-        <label class="volume-wrap">Volume <input id="volumeControl" type="range" min="0" max="100" value="30" aria-label="Ambient music volume"></label>
+        <label class="volume-wrap">Volume <input id="volumeControl" type="range" min="0" max="100" value="36" aria-label="Ambient music volume"></label>
         <button class="voice-button" id="voiceGuide" type="button" aria-label="Read a short voice guide for this page" title="Voice guide">◉</button>
         <button class="shortcut-button" id="shortcutButton" type="button" aria-label="Show keyboard shortcuts" title="Keyboard shortcuts">?</button>
       </div>
-      <div class="audio-hint">Generative ambient music and subtle interface feedback. The voice guide uses your device's speech engine.</div>
+      <div class="audio-hint">Generative ambient music, spatial hover cues, scrolling pulses, and interface feedback. Everything can be muted.</div>
       <div class="shortcut-panel" id="shortcutPanel"><strong>Keyboard controls</strong><p><b>M</b> — mute or enable audio</p><p><b>G</b> — voice guide</p><p><b>H</b> — home</p><p><b>?</b> — show or hide this panel</p></div>
     `);
 
@@ -100,14 +100,12 @@
   injectShell();
   q("#year").textContent = new Date().getFullYear();
 
-  // Active navigation state.
   const currentPath = location.pathname;
   qa(".site-nav a").forEach(a => {
     const href = new URL(a.href, location.origin).pathname;
     if (currentPath === href || (href !== "/" && currentPath.startsWith(href))) a.setAttribute("aria-current","page");
   });
 
-  // Mobile menu and header state.
   const menu = q("#menuToggle");
   const nav = q("#siteNav");
   menu.addEventListener("click", () => {
@@ -121,7 +119,6 @@
   addEventListener("scroll", syncHeader, {passive:true});
   syncHeader();
 
-  // Loading and entry experience.
   const loader = q("#pageLoader");
   const loaderLog = q("#loaderLog");
   const loaderActions = q("#loaderActions");
@@ -129,12 +126,12 @@
   let audioDesired = localStorage.getItem("eoraAudio") === "on";
   body.classList.add("is-loading");
 
-  const logs = ["Resolving portfolio routes…","Loading infrastructure records…","Synchronizing project dossiers…","Interface ready."];
+  const logs = ["Resolving portfolio routes…","Loading infrastructure records…","Synchronizing project dossiers…","Calibrating spatial interface audio…","Interface ready."];
   let logIndex = 0;
   const logTimer = setInterval(() => {
     loaderLog.textContent = logs[Math.min(logIndex++, logs.length - 1)];
     if (logIndex >= logs.length) clearInterval(logTimer);
-  }, 350);
+  }, 320);
 
   function closeLoader(enableAudio, speakWelcome=false, userInitiated=false) {
     sessionStorage.setItem("eoraVisited","true");
@@ -159,7 +156,6 @@
   q("#enterAudio").addEventListener("click", () => closeLoader(true, true, true));
   q("#enterSilent").addEventListener("click", () => closeLoader(false, false, true));
 
-  // Reveals and animated counters.
   const reveals = qa(".reveal");
   if ("IntersectionObserver" in window && !reducedMotion) {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
@@ -188,23 +184,44 @@
     } else run();
   });
 
-  // Pointer lighting and restrained 3D movement.
   const glow = q("#cursorGlow");
+  let pointerX = innerWidth / 2;
+  let pointerY = innerHeight / 2;
+  let pointerSpeed = 0;
+  let lastPointerX = pointerX;
+  let lastPointerY = pointerY;
+  let lastPointerT = performance.now();
   if (matchMedia("(pointer:fine)").matches && !reducedMotion) {
     body.classList.add("has-pointer");
-    addEventListener("pointermove", e => { glow.style.left = `${e.clientX}px`; glow.style.top = `${e.clientY}px`; }, {passive:true});
+    addEventListener("pointermove", e => {
+      glow.style.left = `${e.clientX}px`;
+      glow.style.top = `${e.clientY}px`;
+      const now = performance.now();
+      const dt = Math.max(now - lastPointerT, 1);
+      const dx = e.clientX - lastPointerX;
+      const dy = e.clientY - lastPointerY;
+      pointerSpeed = Math.min(Math.hypot(dx,dy) / dt, 2.4);
+      pointerX = e.clientX;
+      pointerY = e.clientY;
+      lastPointerX = e.clientX;
+      lastPointerY = e.clientY;
+      lastPointerT = now;
+      if (audioEnabled && ctx && spatialPan) {
+        const pan = Math.max(-1, Math.min(1, (pointerX / innerWidth) * 2 - 1));
+        spatialPan.pan.setTargetAtTime(pan, ctx.currentTime, .05);
+      }
+    }, {passive:true});
     qa("[data-tilt]").forEach(card => {
       card.addEventListener("pointermove", e => {
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - .5;
         const y = (e.clientY - r.top) / r.height - .5;
-        card.style.transform = `perspective(900px) rotateX(${y * -5}deg) rotateY(${x * 6}deg) translateY(-2px)`;
+        card.style.transform = `perspective(900px) rotateX(${y * -6}deg) rotateY(${x * 8}deg) translateY(-4px) scale(1.01)`;
       });
       card.addEventListener("pointerleave", () => card.style.transform = "");
     });
   }
 
-  // Page transitions.
   document.addEventListener("click", e => {
     const a = e.target.closest("a");
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -213,19 +230,21 @@
     e.preventDefault();
     if (audioEnabled) uiTone("navigate");
     body.classList.add("nav-exit");
-    setTimeout(() => location.href = url.href, reducedMotion ? 0 : 240);
+    setTimeout(() => location.href = url.href, reducedMotion ? 0 : 300);
   });
 
-  // Generative ambient music and interface audio.
-  let ctx, master, musicGain, uiGain, filter, lfo, chordTimer, bellTimer;
+  let ctx, master, musicGain, uiGain, filter, lfo, chordTimer, bellTimer, shimmerTimer, spatialPan, motionGain;
   let audioEnabled = false;
   let currentChord = 0;
+  let lastHoverTone = 0;
+  let lastScrollTone = 0;
   const audioVoices = [];
   const chordSets = [
     [130.81,164.81,196.00,246.94],
     [110.00,130.81,164.81,196.00],
     [87.31,130.81,174.61,220.00],
-    [98.00,146.83,196.00,220.00]
+    [98.00,146.83,196.00,220.00],
+    [123.47,155.56,185.00,233.08]
   ];
 
   function ensureContext() {
@@ -237,21 +256,28 @@
     musicGain = ctx.createGain();
     uiGain = ctx.createGain();
     filter = ctx.createBiquadFilter();
+    motionGain = ctx.createGain();
+    spatialPan = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
     master.gain.value = .0001;
-    musicGain.gain.value = .22;
-    uiGain.gain.value = .18;
+    musicGain.gain.value = .24;
+    uiGain.gain.value = .2;
+    motionGain.gain.value = .0001;
     filter.type = "lowpass";
-    filter.frequency.value = 900;
-    filter.Q.value = .7;
+    filter.frequency.value = 1050;
+    filter.Q.value = .8;
     musicGain.connect(filter);
     filter.connect(master);
-    uiGain.connect(master);
+    if (spatialPan) {
+      uiGain.connect(spatialPan);
+      spatialPan.connect(master);
+    } else uiGain.connect(master);
+    motionGain.connect(master);
     master.connect(ctx.destination);
 
     lfo = ctx.createOscillator();
     const lfoGain = ctx.createGain();
-    lfo.frequency.value = .07;
-    lfoGain.gain.value = 160;
+    lfo.frequency.value = .055;
+    lfoGain.gain.value = 240;
     lfo.connect(lfoGain);
     lfoGain.connect(filter.frequency);
     lfo.start();
@@ -261,15 +287,26 @@
       const gain = ctx.createGain();
       oscillator.type = index % 2 ? "sine" : "triangle";
       oscillator.frequency.value = frequency / 2;
-      gain.gain.value = index === 0 ? .035 : .018;
+      gain.gain.value = index === 0 ? .038 : .019;
       oscillator.connect(gain);
       gain.connect(musicGain);
       oscillator.start();
       audioVoices.push({oscillator,gain});
     });
+
+    const air = ctx.createOscillator();
+    const airGain = ctx.createGain();
+    air.type = "sine";
+    air.frequency.value = 43.65;
+    airGain.gain.value = .012;
+    air.connect(airGain);
+    airGain.connect(musicGain);
+    air.start();
+
     scheduleChord();
-    chordTimer = setInterval(nextChord, 8000);
-    bellTimer = setInterval(playBell, 4300);
+    chordTimer = setInterval(nextChord, 7600);
+    bellTimer = setInterval(playBell, 3900);
+    shimmerTimer = setInterval(playShimmer, 6100);
     return ctx;
   }
 
@@ -277,9 +314,10 @@
     if (!ctx) return;
     const set = chordSets[currentChord];
     const now = ctx.currentTime;
-    audioVoices.forEach((voice,index) => voice.oscillator.frequency.exponentialRampToValueAtTime(set[index] / 2, now + 3.2));
+    audioVoices.forEach((voice,index) => voice.oscillator.frequency.exponentialRampToValueAtTime(set[index] / 2, now + 3));
   }
   function nextChord() { currentChord = (currentChord + 1) % chordSets.length; scheduleChord(); }
+
   function playBell() {
     if (!audioEnabled || !ctx) return;
     const notes = chordSets[currentChord];
@@ -290,11 +328,26 @@
     oscillator.frequency.value = frequency;
     gain.gain.setValueAtTime(.0001, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(.018, ctx.currentTime + .04);
-    gain.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + 2.4);
+    gain.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + 2.6);
     oscillator.connect(gain);
     gain.connect(musicGain);
     oscillator.start();
-    oscillator.stop(ctx.currentTime + 2.5);
+    oscillator.stop(ctx.currentTime + 2.7);
+  }
+
+  function playShimmer() {
+    if (!audioEnabled || !ctx) return;
+    const now = ctx.currentTime;
+    [0, .09, .18].forEach((offset, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.value = [784, 987.77, 1174.66][i];
+      gain.gain.setValueAtTime(.0001, now + offset);
+      gain.gain.exponentialRampToValueAtTime(.009, now + offset + .015);
+      gain.gain.exponentialRampToValueAtTime(.0001, now + offset + .65);
+      osc.connect(gain); gain.connect(musicGain); osc.start(now + offset); osc.stop(now + offset + .7);
+    });
   }
 
   function startAudio() {
@@ -306,9 +359,10 @@
     const volume = Number(q("#volumeControl").value) / 100;
     master.gain.cancelScheduledValues(activeContext.currentTime);
     master.gain.setValueAtTime(Math.max(master.gain.value,.0001), activeContext.currentTime);
-    master.gain.exponentialRampToValueAtTime(Math.max(volume * .45,.0001), activeContext.currentTime + .8);
+    master.gain.exponentialRampToValueAtTime(Math.max(volume * .48,.0001), activeContext.currentTime + .8);
     localStorage.setItem("eoraAudio","on");
     syncAudioUI();
+    uiTone("confirm");
   }
 
   function stopAudio() {
@@ -331,38 +385,75 @@
     label.textContent = audioEnabled ? "Audio on" : (audioDesired ? "Audio ready" : "Audio off");
   }
 
-  function uiTone(type="click") {
+  function uiTone(type="click", panOverride=null) {
     if (!audioEnabled) return;
     const activeContext = ensureContext();
     if (!activeContext) return;
     const oscillator = activeContext.createOscillator();
     const gain = activeContext.createGain();
-    oscillator.type = "sine";
-    oscillator.frequency.value = type === "navigate" ? 420 : type === "hover" ? 760 : 620;
-    if (type === "navigate") oscillator.frequency.exponentialRampToValueAtTime(840, activeContext.currentTime + .12);
+    const panNode = activeContext.createStereoPanner ? activeContext.createStereoPanner() : null;
+    oscillator.type = type === "hover" ? "triangle" : "sine";
+    const frequencyMap = {navigate:420,hover:760,click:620,confirm:880,scroll:300,menu:540};
+    oscillator.frequency.value = frequencyMap[type] || 620;
+    if (type === "navigate") oscillator.frequency.exponentialRampToValueAtTime(840, activeContext.currentTime + .14);
+    if (type === "confirm") oscillator.frequency.exponentialRampToValueAtTime(1174.66, activeContext.currentTime + .16);
+    if (type === "scroll") oscillator.frequency.exponentialRampToValueAtTime(360, activeContext.currentTime + .08);
+    const peak = type === "hover" ? .018 : type === "scroll" ? .012 : .035;
+    const duration = type === "navigate" || type === "confirm" ? .2 : type === "scroll" ? .12 : .09;
     gain.gain.setValueAtTime(.0001, activeContext.currentTime);
-    gain.gain.exponentialRampToValueAtTime(.035, activeContext.currentTime + .012);
-    gain.gain.exponentialRampToValueAtTime(.0001, activeContext.currentTime + (type === "navigate" ? .18 : .08));
+    gain.gain.exponentialRampToValueAtTime(peak, activeContext.currentTime + .012);
+    gain.gain.exponentialRampToValueAtTime(.0001, activeContext.currentTime + duration);
     oscillator.connect(gain);
-    gain.connect(uiGain);
+    if (panNode) {
+      const pan = panOverride == null ? Math.max(-1, Math.min(1, (pointerX / innerWidth) * 2 - 1)) : panOverride;
+      panNode.pan.value = pan;
+      gain.connect(panNode);
+      panNode.connect(uiGain);
+    } else gain.connect(uiGain);
     oscillator.start();
-    oscillator.stop(activeContext.currentTime + .22);
+    oscillator.stop(activeContext.currentTime + duration + .05);
   }
 
   q("#audioToggle").addEventListener("click", () => audioEnabled ? stopAudio() : startAudio());
   q("#volumeControl").addEventListener("input", e => {
     if (!ctx) return;
     const volume = Number(e.target.value) / 100;
-    master.gain.setTargetAtTime(audioEnabled ? Math.max(volume * .45,.0001) : .0001, ctx.currentTime, .12);
+    master.gain.setTargetAtTime(audioEnabled ? Math.max(volume * .48,.0001) : .0001, ctx.currentTime, .12);
   });
+
   document.addEventListener("pointerover", e => {
     if (!audioEnabled) return;
-    const target = e.target.closest(".button,.page-link,.card,.header-chip");
-    if (target && !target.contains(e.relatedTarget)) uiTone("hover");
+    const target = e.target.closest(".button,.page-link,.card,.header-chip,.site-nav a,.brand,.audio-button,.voice-button,.shortcut-button");
+    if (!target || target.contains(e.relatedTarget)) return;
+    const now = performance.now();
+    if (now - lastHoverTone < 55) return;
+    lastHoverTone = now;
+    const rect = target.getBoundingClientRect();
+    const pan = Math.max(-1, Math.min(1, ((rect.left + rect.width / 2) / innerWidth) * 2 - 1));
+    uiTone("hover", pan);
   });
-  document.addEventListener("click", e => { if (audioEnabled && e.target.closest("button,.button")) uiTone("click"); });
 
-  // Voice guide.
+  document.addEventListener("click", e => {
+    if (!audioEnabled) return;
+    if (e.target.closest("button,.button,.site-nav a,.header-chip")) uiTone("click");
+  });
+
+  menu.addEventListener("click", () => { if (audioEnabled) uiTone("menu"); });
+
+  let lastScrollY = scrollY;
+  addEventListener("scroll", () => {
+    if (!audioEnabled || !ctx) return;
+    const now = performance.now();
+    const delta = Math.abs(scrollY - lastScrollY);
+    lastScrollY = scrollY;
+    if (delta > 18 && now - lastScrollTone > 145) {
+      lastScrollTone = now;
+      const directionPan = scrollY % 2 ? .18 : -.18;
+      uiTone("scroll", directionPan);
+    }
+    if (motionGain) motionGain.gain.setTargetAtTime(Math.min(.018, delta / 7000), ctx.currentTime, .04);
+  }, {passive:true});
+
   function speak(text) {
     if (!("speechSynthesis" in window)) return;
     speechSynthesis.cancel();
@@ -376,7 +467,6 @@
   }
   q("#voiceGuide").addEventListener("click", () => speak(`${page.title}. ${page.voice}`));
 
-  // Keyboard shortcuts.
   const shortcutPanel = q("#shortcutPanel");
   q("#shortcutButton").addEventListener("click", () => shortcutPanel.classList.toggle("is-open"));
   addEventListener("keydown", e => {
@@ -387,7 +477,6 @@
     if (e.key === "?") shortcutPanel.classList.toggle("is-open");
   });
 
-  // Browser autoplay rules require a trusted interaction when audio was saved from a previous page.
   if (audioDesired) {
     const resumeSavedAudio = event => {
       if (event.target && event.target.closest && event.target.closest("#audioToggle")) return;
@@ -400,7 +489,6 @@
   }
   syncAudioUI();
 
-  // Animated network background.
   if (!reducedMotion) {
     const canvas = q("#networkCanvas");
     const context = canvas.getContext("2d");
@@ -414,12 +502,22 @@
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       context.setTransform(dpr,0,0,dpr,0,0);
-      const count = Math.max(22, Math.min(58, Math.floor(width * height / 26000)));
-      nodes = Array.from({length:count}, () => ({x:Math.random()*width,y:Math.random()*height,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18,r:Math.random()*1.6+.6}));
+      const count = Math.max(22, Math.min(64, Math.floor(width * height / 24000)));
+      nodes = Array.from({length:count}, () => ({x:Math.random()*width,y:Math.random()*height,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,r:Math.random()*1.8+.6}));
     }
     function drawNetwork() {
       context.clearRect(0,0,width,height);
       nodes.forEach(node => {
+        const dx = pointerX - node.x;
+        const dy = pointerY - node.y;
+        const dist = Math.hypot(dx,dy);
+        if (dist < 180 && dist > 1) {
+          const pull = (1 - dist / 180) * .004 * (1 + pointerSpeed);
+          node.vx += dx * pull / dist;
+          node.vy += dy * pull / dist;
+        }
+        node.vx *= .998;
+        node.vy *= .998;
         node.x += node.vx; node.y += node.vy;
         if (node.x < 0 || node.x > width) node.vx *= -1;
         if (node.y < 0 || node.y > height) node.vy *= -1;
@@ -427,12 +525,12 @@
       context.lineWidth = .55;
       for (let i=0;i<nodes.length;i++) for (let j=i+1;j<nodes.length;j++) {
         const a=nodes[i], b=nodes[j], distance=Math.hypot(a.x-b.x,a.y-b.y);
-        if (distance < 145) {
-          context.strokeStyle = `rgba(104,220,255,${(1-distance/145)*.10})`;
+        if (distance < 155) {
+          context.strokeStyle = `rgba(104,220,255,${(1-distance/155)*.12})`;
           context.beginPath(); context.moveTo(a.x,a.y); context.lineTo(b.x,b.y); context.stroke();
         }
       }
-      nodes.forEach(node => { context.fillStyle="rgba(137,226,255,.34)"; context.beginPath(); context.arc(node.x,node.y,node.r,0,Math.PI*2); context.fill(); });
+      nodes.forEach(node => { context.fillStyle="rgba(137,226,255,.38)"; context.beginPath(); context.arc(node.x,node.y,node.r,0,Math.PI*2); context.fill(); });
       requestAnimationFrame(drawNetwork);
     }
     resizeCanvas();
