@@ -128,14 +128,62 @@
       eyebrow: "Architecture · implementation · analysis",
       headline: "Evidence of how I <em>reason, build, and document.</em>",
       lede: "Projects are presented as case studies with a business problem, implementation scope, design choices, risk considerations, limitations, and next steps.",
-      voice: "The project portfolio includes the Eora Enterprise Lab, healthcare identity design, authorized Wi-Fi deauthentication research, and an enterprise infrastructure operations case study.",
-      actions: [["/projects/eora-lab/","Open flagship project","primary"],["/recruiter/","Recruiter view","secondary"]],
+      voice: "The project portfolio includes the Eora Enterprise Lab, the EORA Toolkit, healthcare identity design, authorized Wi-Fi deauthentication research, and an enterprise infrastructure operations case study.",
+      actions: [["/projects/eora-lab/","Open flagship project","primary"],["/projects/eora-toolkit/","Open EORA Toolkit","secondary"]],
       content: `${heroCards([
         {title:"Eora Enterprise Lab",text:"A multi-site Windows Server 2025 environment modeling Active Directory, DNS, DHCP, Group Policy, file services, role-based access, and PowerShell administration.",tags:["Active build","Windows Server 2025","AD DS","PowerShell"],href:"/projects/eora-lab/",wide:true,status:"Active build",statusClass:"status current"},
+        {title:"EORA Toolkit",text:"A portable Windows PowerShell assessment utility that simplifies system and network evidence collection while preserving the detail technicians need to troubleshoot.",tags:["PowerShell 5.1","Diagnostics","Evidence reporting"],href:"/projects/eora-toolkit/",wide:true,status:"Lab validated v0.4.0",statusClass:"status earned"},
         {title:"Healthcare Identity Design",text:"A role-based identity and access concept connecting clinical responsibilities, joiner-mover-leaver processes, MFA, privileged access, auditability, and continuity.",tags:["IAM","RBAC","Healthcare"],href:"/projects/healthcare-identity/"},
         {title:"Wi-Fi Deauthentication Research",text:"An authorized Kali Linux research presentation covering 802.11 management frames, deauthentication behavior, PMF, WPA3, monitoring, and ethical constraints.",tags:["Kali Linux","802.11","PMF"],href:"/projects/wireless-security/"},
         {title:"Enterprise Infrastructure Operations",text:"A case study connecting service-desk signals to identity, endpoint, Microsoft 365, escalation, documentation, and continuity improvements.",tags:["Operations","M365","Documentation"],href:"/projects/infrastructure-operations/",wide:true}
       ])}`
+    },
+
+    "project-toolkit": {
+      title: "EORA Toolkit",
+      eyebrow: "Windows assessment utility · Lab validated v0.4.0",
+      headline: "Turn endpoint state into <em>reviewable evidence.</em>",
+      lede: "EORA Toolkit is a portable Windows PowerShell 5.1 utility that replaces a scattered, multi-command collection process with one consistent system and network assessment.",
+      voice: "The EORA Toolkit case study documents a lab-validated PowerShell utility that gathers system and network evidence in one run and saves structured JSON, technician-readable text, and offline HTML reports locally.",
+      actions: [["/projects/","All projects","primary"],["/services/","Related services","secondary"]],
+      content: `${detail(`
+        <span class="status earned">Lab validated · v0.4.0</span>
+        <h2>The problem</h2>
+        <p>A basic Windows network investigation can require several commands and menus just to identify the active adapter, address, prefix, gateway, DNS servers, DHCP details, and route state. EORA Toolkit collects that evidence in one pass so a technician can spend less time gathering facts and more time testing likely causes.</p>
+        <h3>Validated capabilities</h3>
+        <ul class="check-list">
+          <li>Collects Windows system inventory and normalized network configuration.</li>
+          <li>Selects the preferred active adapter using route and interface evidence.</li>
+          <li>Reports IPv4 CIDR, address classification, gateway, DNS, DHCP, MAC address, and OUI prefix.</li>
+          <li>Tests gateway reachability and DNS resolution without requiring internet testing.</li>
+          <li>Exports machine-readable JSON, technician-readable text, and offline HTML.</li>
+        </ul>
+        <h3>Simplicity without losing depth</h3>
+        <p>The toolkit separates collection, interpretation, and presentation. JSON preserves structured evidence for automation; text supports quick troubleshooting and handoff; HTML provides a readable offline report without requiring the toolkit on the reviewer's computer. The output supports hypotheses about addressing, routing, gateway reachability, DNS, DHCP, and adapter state without pretending to replace technician judgment.</p>
+        <div class="callout"><strong>Local reports and privacy</strong><p>Reports are saved locally and are not transmitted by the toolkit. Because they may contain hostnames, IP addresses, MAC addresses, adapter details, and other environment information, technicians should store and share them only with authorized recipients. Any examples used in the public portfolio are sanitized.</p></div>
+        <h3>Failures that improved the design</h3>
+        <p>Testing exposed two useful defects: APIPA addresses were initially misclassified, and gateway-less adapters triggered a StrictMode error when code assumed a <code>NextHop</code> value existed. Both failures became regression checks and strengthened handling of disconnected Ethernet and Bluetooth adapters.</p>
+        <h3>Current limitations</h3>
+        <ul>
+          <li>Windows-focused and currently validated in a small physical-device lab.</li>
+          <li>Not an EDR, SIEM, vulnerability scanner, or compliance guarantee.</li>
+          <li>An OUI prefix is collected, but manufacturer lookup is not yet implemented.</li>
+          <li>Additional storage, security, and support modules remain iterative work.</li>
+        </ul>
+      `,`
+        <h3>Technical profile</h3>
+        <dl>
+          <div><dt>Runtime</dt><dd>Windows PowerShell 5.1</dd></div>
+          <div><dt>Release</dt><dd>v0.4.0</dd></div>
+          <div><dt>Operation</dt><dd>Read-only assessment</dd></div>
+          <div><dt>Outputs</dt><dd>JSON · TXT · offline HTML</dd></div>
+          <div><dt>Validation</dt><dd>Physical Windows 11 endpoint</dd></div>
+          <div><dt>Method</dt><dd>Collect · normalize · assess · report</dd></div>
+        </dl>
+        <h3>What this demonstrates</h3>
+        <p>PowerShell module design, defensive property handling, test-driven correction, evidence hygiene, technical writing, and translating raw telemetry into useful findings.</p>
+      `)}
+      ${nextLinks([["/projects/eora-lab/","Related lab","See the infrastructure environment"],["/services/","Related service","Assessment and administrative automation"]])}`
     },
 
     "project-eora": {
