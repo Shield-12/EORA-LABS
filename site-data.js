@@ -132,7 +132,7 @@
       actions: [["/projects/eora-lab/","Open flagship project","primary"],["/projects/eora-toolkit/","Open EORA Toolkit","secondary"]],
       content: `${heroCards([
         {title:"Eora Enterprise Lab",text:"A multi-site Windows Server 2025 environment modeling Active Directory, DNS, DHCP, Group Policy, file services, role-based access, and PowerShell administration.",tags:["Active build","Windows Server 2025","AD DS","PowerShell"],href:"/projects/eora-lab/",wide:true,status:"Active build",statusClass:"status current"},
-        {title:"EORA Toolkit",text:"A portable Windows PowerShell assessment utility that turns system inventory and network telemetry into structured JSON, technician text, and offline HTML findings.",tags:["PowerShell 5.1","Diagnostics","Evidence reporting"],href:"/projects/eora-toolkit/",wide:true,status:"Lab validated v0.4.0",statusClass:"status earned"},
+        {title:"EORA Toolkit",text:"A portable Windows PowerShell assessment utility that simplifies system and network evidence collection while preserving the detail technicians need to troubleshoot.",tags:["PowerShell 5.1","Diagnostics","Evidence reporting"],href:"/projects/eora-toolkit/",wide:true,status:"Lab validated v0.4.0",statusClass:"status earned"},
         {title:"Healthcare Identity Design",text:"A role-based identity and access concept connecting clinical responsibilities, joiner-mover-leaver processes, MFA, privileged access, auditability, and continuity.",tags:["IAM","RBAC","Healthcare"],href:"/projects/healthcare-identity/"},
         {title:"Wi-Fi Deauthentication Research",text:"An authorized Kali Linux research presentation covering 802.11 management frames, deauthentication behavior, PMF, WPA3, monitoring, and ethical constraints.",tags:["Kali Linux","802.11","PMF"],href:"/projects/wireless-security/"},
         {title:"Enterprise Infrastructure Operations",text:"A case study connecting service-desk signals to identity, endpoint, Microsoft 365, escalation, documentation, and continuity improvements.",tags:["Operations","M365","Documentation"],href:"/projects/infrastructure-operations/",wide:true}
@@ -143,13 +143,13 @@
       title: "EORA Toolkit",
       eyebrow: "Windows assessment utility · Lab validated v0.4.0",
       headline: "Turn endpoint state into <em>reviewable evidence.</em>",
-      lede: "EORA Toolkit is a portable Windows PowerShell 5.1 utility that collects system and network facts, evaluates them in context, and produces reports for technicians and reviewers.",
-      voice: "The EORA Toolkit case study documents a lab-validated PowerShell assessment utility that produces structured JSON, technician-readable text, and offline HTML reports without publishing sensitive raw endpoint data.",
+      lede: "EORA Toolkit is a portable Windows PowerShell 5.1 utility that replaces a scattered, multi-command collection process with one consistent system and network assessment.",
+      voice: "The EORA Toolkit case study documents a lab-validated PowerShell utility that gathers system and network evidence in one run and saves structured JSON, technician-readable text, and offline HTML reports locally.",
       actions: [["/projects/","All projects","primary"],["/services/","Related services","secondary"]],
       content: `${detail(`
         <span class="status earned">Lab validated · v0.4.0</span>
         <h2>The problem</h2>
-        <p>Windows troubleshooting often begins with scattered commands, screenshots, and notes. That makes results difficult to compare, hand off, or defend later. EORA Toolkit turns those observations into a consistent evidence package.</p>
+        <p>A basic Windows network investigation can require several commands and menus just to identify the active adapter, address, prefix, gateway, DNS servers, DHCP details, and route state. EORA Toolkit collects that evidence in one pass so a technician can spend less time gathering facts and more time testing likely causes.</p>
         <h3>Validated capabilities</h3>
         <ul class="check-list">
           <li>Collects Windows system inventory and normalized network configuration.</li>
@@ -158,9 +158,9 @@
           <li>Tests gateway reachability and DNS resolution without requiring internet testing.</li>
           <li>Exports machine-readable JSON, technician-readable text, and offline HTML.</li>
         </ul>
-        <h3>Engineering decisions</h3>
-        <p>The toolkit separates collection, interpretation, and presentation. JSON preserves structured evidence for automation; text supports quick support work; HTML gives a portable report that can be reviewed without the toolkit installed.</p>
-        <div class="callout"><strong>Privacy boundary</strong><p>Public portfolio material is sanitized. Raw endpoint reports can contain hostnames, addresses, adapter identifiers, and environment details, so they are not published.</p></div>
+        <h3>Simplicity without losing depth</h3>
+        <p>The toolkit separates collection, interpretation, and presentation. JSON preserves structured evidence for automation; text supports quick troubleshooting and handoff; HTML provides a readable offline report without requiring the toolkit on the reviewer's computer. The output supports hypotheses about addressing, routing, gateway reachability, DNS, DHCP, and adapter state without pretending to replace technician judgment.</p>
+        <div class="callout"><strong>Local reports and privacy</strong><p>Reports are saved locally and are not transmitted by the toolkit. Because they may contain hostnames, IP addresses, MAC addresses, adapter details, and other environment information, technicians should store and share them only with authorized recipients. Any examples used in the public portfolio are sanitized.</p></div>
         <h3>Failures that improved the design</h3>
         <p>Testing exposed two useful defects: APIPA addresses were initially misclassified, and gateway-less adapters triggered a StrictMode error when code assumed a <code>NextHop</code> value existed. Both failures became regression checks and strengthened handling of disconnected Ethernet and Bluetooth adapters.</p>
         <h3>Current limitations</h3>
