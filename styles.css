@@ -506,3 +506,7 @@ body.editorial-theme .shortcut-panel{
   body.editorial-theme .site-header{border-bottom-color:#111}
   body.editorial-theme .site-nav{border-color:#111}
 }
+
+
+/* Keep the monochrome layout free of decorative hero motion */
+body.editorial-theme .page-hero:after{display:none!important}
