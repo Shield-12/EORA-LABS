@@ -57,7 +57,6 @@
           <div class="inner"><blockquote class="quote reveal">“A password reset is not only a ticket. It is an identity event, an access-control decision, and a continuity dependency.”</blockquote></div>
         </section>
       `
-      `
     },
 
     recruiter: {
