@@ -51,21 +51,6 @@
   function injectShell() {
     body.insertAdjacentHTML("afterbegin", `
       <a class="skip-link" href="#main">Skip to content</a>
-      <div class="page-loader" id="pageLoader" role="dialog" aria-modal="true" aria-label="Loading Eora Labs">
-        <div class="loader-shell">
-          <div class="loader-mark" aria-hidden="true">EL</div>
-          <p class="loader-kicker">Professional systems portfolio</p>
-          <h1 class="loader-title">Eora Labs</h1>
-          <p class="loader-subtitle">Systems · Security · Infrastructure</p>
-          <div class="loader-track" aria-hidden="true"><i></i></div>
-          <p class="loader-log" id="loaderLog" aria-live="polite">Initializing ${escapeHtml(page.title)} interface…</p>
-          <div class="loader-actions" id="loaderActions">
-            <button class="button primary" id="enterAudio" type="button">Enter with ambient audio</button>
-            <button class="button secondary" id="enterSilent" type="button">Enter silently</button>
-          </div>
-          <small class="loader-note">Audio is optional and can be muted at any time.</small>
-        </div>
-      </div>
       <canvas id="networkCanvas" aria-hidden="true"></canvas>
       <div class="grid-field" aria-hidden="true"></div>
       <div class="noise-field" aria-hidden="true"></div>
@@ -119,42 +104,7 @@
   addEventListener("scroll", syncHeader, {passive:true});
   syncHeader();
 
-  const loader = q("#pageLoader");
-  const loaderLog = q("#loaderLog");
-  const loaderActions = q("#loaderActions");
-  const visited = sessionStorage.getItem("eoraVisited") === "true";
   let audioDesired = localStorage.getItem("eoraAudio") === "on";
-  body.classList.add("is-loading");
-
-  const logs = ["Resolving portfolio routes…","Loading infrastructure records…","Synchronizing project dossiers…","Calibrating spatial interface audio…","Interface ready."];
-  let logIndex = 0;
-  const logTimer = setInterval(() => {
-    loaderLog.textContent = logs[Math.min(logIndex++, logs.length - 1)];
-    if (logIndex >= logs.length) clearInterval(logTimer);
-  }, 320);
-
-  function closeLoader(enableAudio, speakWelcome=false, userInitiated=false) {
-    sessionStorage.setItem("eoraVisited","true");
-    audioDesired = enableAudio;
-    localStorage.setItem("eoraAudio", enableAudio ? "on" : "off");
-    if (enableAudio && userInitiated) startAudio();
-    syncAudioUI();
-    if (speakWelcome) speak(`Welcome to Eora Labs. ${page.voice}`);
-    loader.classList.add("is-hidden");
-    body.classList.remove("is-loading");
-    setTimeout(() => loader.setAttribute("aria-hidden","true"), 700);
-  }
-
-  setTimeout(() => {
-    if (visited) closeLoader(audioDesired, false, false);
-    else {
-      loaderActions.classList.add("is-ready");
-      q("#enterAudio").focus({preventScroll:true});
-    }
-  }, reducedMotion ? 90 : (visited ? 700 : 1750));
-
-  q("#enterAudio").addEventListener("click", () => closeLoader(true, true, true));
-  q("#enterSilent").addEventListener("click", () => closeLoader(false, false, true));
 
   const reveals = qa(".reveal");
   if ("IntersectionObserver" in window && !reducedMotion) {
@@ -893,10 +843,3 @@
   document.body.classList.add("editorial-theme");
 })();
 
-
-/* Editorial correction: no blocking loader */
-(() => {
-  const loader = document.querySelector("#pageLoader");
-  if (loader) loader.remove();
-  document.body.classList.remove("is-loading");
-})();
