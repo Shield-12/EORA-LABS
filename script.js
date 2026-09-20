@@ -645,8 +645,8 @@
     return parsed.body?.dataset.page || "notfound";
   }
 
-  async function navigate(url, {replace = false, scroll = true} = {}) {
-    if (url.origin !== location.origin || url.pathname === location.pathname && url.search === location.search) {
+  async function navigate(url, {replace = false, scroll = true, force = false} = {}) {
+    if (!force && (url.origin !== location.origin || url.pathname === location.pathname && url.search === location.search)) {
       if (url.hash) document.querySelector(url.hash)?.scrollIntoView({behavior: reducedMotion ? "auto" : "smooth"});
       return;
     }
@@ -680,7 +680,7 @@
     navigate(url);
   }, true);
 
-  addEventListener("popstate", () => navigate(new URL(location.href), {replace: true}));
+  addEventListener("popstate", () => navigate(new URL(location.href), {replace: true, force: true}));
   history.replaceState({path: location.pathname}, "", location.href);
 
   const transitionStyle = document.createElement("style");
