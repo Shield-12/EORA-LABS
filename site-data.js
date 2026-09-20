@@ -6,57 +6,59 @@
   window.EORA_PAGES = {
     home: {
       title: "Eora Labs",
-      eyebrow: "Professional systems portfolio",
-      headline: "Infrastructure thinking, <em>built from real operations.</em>",
-      lede: "Eora Labs documents Langston Brown's progression from frontline healthcare and public-sector IT support into systems administration, identity, cybersecurity, and enterprise infrastructure.",
+      eyebrow: "Langston Brown · Systems Operations",
+      headline: "Welcome to Eora Labs.",
+      lede: "A simple record of systems work, security practice, infrastructure study, and the professional experience behind it.",
       voice: "Welcome to Eora Labs. This portfolio presents Langston Brown's professional experience, certifications, technical projects, and operating philosophy in systems and security.",
       compact: false,
       actions: [["/recruiter/","Recruiter overview","primary"],["/projects/","Explore the work","secondary"],["/contact/","Contact Langston","secondary"]],
       content: `
         <section class="section band"><div class="inner command-grid">
-          <div class="command-screen reveal" data-tilt>
-            <div class="command-top"><span>EORA // ENVIRONMENT OVERVIEW</span><span class="kicker-row"><i class="live-dot"></i> active build</span></div>
-            <div class="orbit-map" aria-hidden="true"><span class="orbit o1"></span><span class="orbit o2"></span><div class="core">EORA CORE</div><span class="node n1">Identity</span><span class="node n2">Endpoints</span><span class="node n3">Security</span><span class="node n4">Network</span></div>
+          <div clas      content: `
+        <section class="section band reference-home">
+          <div class="inner reference-home-grid">
+            <article class="reference-copy reveal">
+              <h2>Welcome.</h2>
+              <p>Eora Labs is a working portfolio for Langston Brown, an information systems professional based in Memphis, Tennessee.</p>
+              <p>The site brings together healthcare IT experience, public-sector support, field engineering, certifications, and a Windows Server infrastructure lab. It is meant to show not only what I have studied, but how I think about the systems people depend on every day.</p>
+              <p>My focus is moving from frontline troubleshooting toward systems administration, identity and access, endpoint operations, and security-minded infrastructure work.</p>
+              <p>Explore the sections below to review the work, the experience behind it, and the evidence of continued preparation.</p>
+              <div class="reference-contact">
+                <a class="button primary small" href="/recruiter/">Recruiter briefing</a>
+                <a class="button secondary small" href="/projects/">Technical projects</a>
+                <a class="button secondary small" href="/contact/">Contact</a>
+              </div>
+            </article>
+            <aside class="reference-aside reveal">
+              <div class="reference-monogram" aria-hidden="true">EL</div>
+              <h3>Eora Labs</h3>
+              <p>Systems · Security · Infrastructure</p>
+              <dl>
+                <div><dt>Based in</dt><dd>Memphis, Tennessee</dd></div>
+                <div><dt>Current direction</dt><dd>Systems · IAM · Endpoint</dd></div>
+                <div><dt>Flagship build</dt><dd>Eora Enterprise Lab</dd></div>
+              </dl>
+            </aside>
           </div>
-          <div class="console-list reveal">
-            <article class="console-item">
-              <strong>Experience on the ground</strong>
-              <span>Healthcare IT · Field services · County government</span>
-              <div class="console-item-action"><small>7+ years of hands-on support</small><a href="/experience/">View experience <b aria-hidden="true">→</b></a></div>
-            </article>
-            <article class="console-item">
-              <strong>Where I am headed</strong>
-              <span>Systems administration · IAM · Endpoint · Security operations</span>
-              <div class="console-item-action"><small>Target roles and capabilities</small><a href="/capabilities/">See capabilities <b aria-hidden="true">→</b></a></div>
-            </article>
-            <article class="console-item">
-              <strong>What I am building</strong>
-              <span>Windows Server 2025 · Active Directory · DNS · DHCP · Group Policy</span>
-              <div class="console-item-action"><small>Active infrastructure lab</small><a href="/projects/eora-lab/">Open the lab <b aria-hidden="true">→</b></a></div>
-            </article>
-            <article class="console-item">
-              <strong>Proof of preparation</strong>
-              <span>CySA+ · Security+ · Network+ · ISC2 CC · A+ · ITF+</span>
-              <div class="console-item-action"><small>Certifications and education</small><a href="/credentials/">View credentials <b aria-hidden="true">→</b></a></div>
-            </article>
+        </section>
+        <section class="section">
+          <div class="inner">
+            <header class="section-heading reveal">
+              <div><p class="eyebrow">Portfolio sections</p><h2>Review the record.</h2></div>
+              <p>Each section keeps the presentation direct: a short overview first, followed by the supporting detail.</p>
+            </header>
+            <div class="cards reference-cards">
+              <article class="card reveal"><p class="card-number">01</p><h3>Experience</h3><p>Healthcare IT, field engineering, and county-government support.</p><div class="card-actions"><a class="button secondary small" href="/experience/">View experience</a></div></article>
+              <article class="card reveal"><p class="card-number">02</p><h3>Projects</h3><p>Infrastructure, identity, networking, wireless research, and operations case studies.</p><div class="card-actions"><a class="button secondary small" href="/projects/">View projects</a></div></article>
+              <article class="card reveal"><p class="card-number">03</p><h3>Credentials</h3><p>Certifications, education, and the milestones that support the technical direction.</p><div class="card-actions"><a class="button secondary small" href="/credentials/">View credentials</a></div></article>
+              <article class="card reveal"><p class="card-number">04</p><h3>Capabilities</h3><p>Systems, identity, endpoints, networks, documentation, and security-minded administration.</p><div class="card-actions"><a class="button secondary small" href="/capabilities/">View capabilities</a></div></article>
+            </div>
           </div>
-        </div></section>
-        <section class="section"><div class="inner"><header class="section-heading reveal"><div><p class="eyebrow">Choose a route</p><h2>Explore the portfolio as evidence.</h2></div><p>Every major project, role, credential, and education milestone has its own page. The site is designed for both a fast recruiter scan and a deeper technical review.</p></header>
-          <div class="cards">
-            <article class="card wide reveal" data-tilt><p class="card-number">01</p><h3>Recruiter briefing</h3><p>A concise executive view of experience, value proposition, technical direction, and target roles.</p><div class="card-actions"><a class="button primary small" href="/recruiter/">Open recruiter view</a></div><span class="watermark">R</span></article>
-            <article class="card reveal" data-tilt><p class="card-number">02</p><h3>Projects</h3><p>Architecture, implementation decisions, risk analysis, and lessons learned.</p><div class="card-actions"><a class="button secondary small" href="/projects/">View projects</a></div></article>
-            <article class="card reveal" data-tilt><p class="card-number">03</p><h3>Experience</h3><p>Seven-plus years supporting clinical, field-service, and government operations.</p><div class="card-actions"><a class="button secondary small" href="/experience/">View experience</a></div></article>
-            <article class="card reveal" data-tilt><p class="card-number">04</p><h3>Credentials</h3><p>Current certifications, prior certification cycles, and education records.</p><div class="card-actions"><a class="button secondary small" href="/credentials/">View credentials</a></div></article>
-            <article class="card reveal" data-tilt><p class="card-number">05</p><h3>Capabilities</h3><p>Systems, identity, endpoint, networking, documentation, and security-minded support.</p><div class="card-actions"><a class="button secondary small" href="/capabilities/">View capabilities</a></div></article>
-          </div>
-        </div></section>
-        <section class="section band"><div class="inner"><blockquote class="quote reveal">“A password reset is not only a ticket. It is an identity event, an access-control decision, and a continuity dependency.”</blockquote></div></section>
-      `
-    },
-
-    recruiter: {
-      title: "Recruiter Briefing",
-      eyebrow: "Fast professional review",
+        </section>
+        <section class="section band">
+          <div class="inner"><blockquote class="quote reveal">“A password reset is not only a ticket. It is an identity event, an access-control decision, and a continuity dependency.”</blockquote></div>
+        </section>
+      `ew",
       headline: "A support foundation moving toward <em>systems and security ownership.</em>",
       lede: "Langston Brown is a Memphis-based information systems professional with more than seven years of IT experience across healthcare, customer field environments, and county government.",
       voice: "This recruiter briefing summarizes Langston Brown's experience, credentials, current technical lab, and target roles in systems administration, identity, endpoint administration, cybersecurity operations, and healthcare information technology.",
