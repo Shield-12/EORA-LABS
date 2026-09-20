@@ -59,3 +59,10 @@ main{min-height:100vh}.page-hero{position:relative;display:grid;align-items:end;
 @keyframes interactionRipple{0%{opacity:.9;transform:scale(.25)}70%{opacity:.42}100%{opacity:0;transform:scale(18)}}
 .site-header,.xmb-shell,.audio-dock{will-change:transform}
 @media(prefers-reduced-motion:reduce){.xmb-shell{transform:none}.interaction-ripple{display:none}.xmb-item::before,.button::before,.page-link::before,.card::before,.xmb-category::before{transition:none}}
+
+/* Homepage console card actions */
+.console-item-action{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-top:.75rem;padding-top:.62rem;border-top:1px solid rgba(137,226,255,.1)}
+.console-item-action small{margin:0;color:var(--muted);font-size:.65rem}
+.console-item-action a{color:var(--cyan);font-size:.72rem;font-weight:800;text-decoration:none;white-space:nowrap}
+.console-item-action a:hover,.console-item-action a:focus-visible{color:var(--text);text-decoration:underline;text-underline-offset:3px}
+.console-item-action a b{font-size:.95rem;margin-left:.15rem}
