@@ -19,10 +19,26 @@
             <div class="orbit-map" aria-hidden="true"><span class="orbit o1"></span><span class="orbit o2"></span><div class="core">EORA CORE</div><span class="node n1">Identity</span><span class="node n2">Endpoints</span><span class="node n3">Security</span><span class="node n4">Network</span></div>
           </div>
           <div class="console-list reveal">
-            <article class="console-item"><strong>Professional experience</strong><span>Healthcare IT · Field services · County government</span><div class="progress"><i style="width:92%"></i></div></article>
-            <article class="console-item"><strong>Technical direction</strong><span>Systems administration · IAM · Endpoint · Security operations</span><div class="progress"><i style="width:84%"></i></div></article>
-            <article class="console-item"><strong>Current lab</strong><span>Windows Server 2025 · Active Directory · DNS · DHCP · Group Policy</span><div class="progress"><i style="width:76%"></i></div></article>
-            <article class="console-item"><strong>Credentials</strong><span>CySA+ · Security+ · Network+ · ISC2 CC · A+ · ITF+</span><div class="progress"><i style="width:88%"></i></div></article>
+            <article class="console-item">
+              <strong>Experience on the ground</strong>
+              <span>Healthcare IT · Field services · County government</span>
+              <div class="console-item-action"><small>7+ years of hands-on support</small><a href="/experience/">View experience <b aria-hidden="true">→</b></a></div>
+            </article>
+            <article class="console-item">
+              <strong>Where I am headed</strong>
+              <span>Systems administration · IAM · Endpoint · Security operations</span>
+              <div class="console-item-action"><small>Target roles and capabilities</small><a href="/capabilities/">See capabilities <b aria-hidden="true">→</b></a></div>
+            </article>
+            <article class="console-item">
+              <strong>What I am building</strong>
+              <span>Windows Server 2025 · Active Directory · DNS · DHCP · Group Policy</span>
+              <div class="console-item-action"><small>Active infrastructure lab</small><a href="/projects/eora-lab/">Open the lab <b aria-hidden="true">→</b></a></div>
+            </article>
+            <article class="console-item">
+              <strong>Proof of preparation</strong>
+              <span>CySA+ · Security+ · Network+ · ISC2 CC · A+ · ITF+</span>
+              <div class="console-item-action"><small>Certifications and education</small><a href="/credentials/">View credentials <b aria-hidden="true">→</b></a></div>
+            </article>
           </div>
         </div></section>
         <section class="section"><div class="inner"><header class="section-heading reveal"><div><p class="eyebrow">Choose a route</p><h2>Explore the portfolio as evidence.</h2></div><p>Every major project, role, credential, and education milestone has its own page. The site is designed for both a fast recruiter scan and a deeper technical review.</p></header>
