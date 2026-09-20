@@ -489,6 +489,8 @@
   }
   syncAudioUI();
 
+  window.EORA_AUDIO = { tone: uiTone, enabled: () => audioEnabled };
+
   if (!reducedMotion) {
     const canvas = q("#networkCanvas");
     const context = canvas.getContext("2d");
@@ -829,4 +831,58 @@
     renderCategories();
     renderItems();
   });
+})();
+
+
+/* Motion and interaction sound polish */
+(() => {
+  "use strict";
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const body = document.body;
+  let lastMoveTone = 0;
+  let lastX = innerWidth / 2;
+  let lastY = innerHeight / 2;
+
+  function ripple(event) {
+    if (reducedMotion) return;
+    const target = event.target.closest("a,button,.xmb-item,.card,.page-link");
+    if (!target || target.closest(".audio-dock")) return;
+    const rect = target.getBoundingClientRect();
+    const dot = document.createElement("i");
+    dot.className = "interaction-ripple";
+    dot.style.left = `${event.clientX - rect.left}px`;
+    dot.style.top = `${event.clientY - rect.top}px`;
+    target.appendChild(dot);
+    setTimeout(() => dot.remove(), 620);
+  }
+
+  document.addEventListener("pointerdown", ripple, {passive:true});
+
+  if (reducedMotion || !matchMedia("(pointer:fine)").matches) return;
+
+  document.addEventListener("pointermove", event => {
+    const target = event.target.closest("a,button,.xmb-item,.card,.page-link");
+    const dx = event.clientX - lastX;
+    const dy = event.clientY - lastY;
+    lastX = event.clientX;
+    lastY = event.clientY;
+
+    if (target) {
+      const rect = target.getBoundingClientRect();
+      target.style.setProperty("--pointer-x", `${((event.clientX - rect.left) / target.offsetWidth) * 100}%`);
+      target.style.setProperty("--pointer-y", `${((event.clientY - rect.top) / target.offsetHeight) * 100}%`);
+      const now = performance.now();
+      if (window.EORA_AUDIO?.enabled?.() && now - lastMoveTone > 165 && Math.hypot(dx, dy) > 2) {
+        lastMoveTone = now;
+        const pan = Math.max(-1, Math.min(1, ((rect.left + rect.width / 2) / innerWidth) * 2 - 1));
+        window.EORA_AUDIO.tone("hover", pan);
+      }
+    }
+
+    const rail = document.querySelector(".xmb-shell");
+    if (rail && !target?.closest(".xmb-shell")) {
+      rail.style.setProperty("--cursor-drift-x", `${(event.clientX / innerWidth - .5) * 1.4}px`);
+      rail.style.setProperty("--cursor-drift-y", `${(event.clientY / innerHeight - .5) * 1.4}px`);
+    }
+  }, {passive:true});
 })();
