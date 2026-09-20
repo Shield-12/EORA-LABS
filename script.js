@@ -538,3 +538,159 @@
     drawNetwork();
   }
 })();
+
+/* EORA SPA navigation layer
+ * Keeps the shared shell, ambient audio, and interface state alive while
+ * page content changes in-place. Full URLs remain bookmarkable and
+ * back/forward navigation is supported through the History API.
+ */
+(() => {
+  "use strict";
+
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const body = document.body;
+  const main = document.querySelector("#main");
+  if (!main || !window.EORA_PAGES) return;
+
+  const escapeHtml = value => String(value).replace(/[&<>"']/g, c => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#039;"
+  }[c]));
+
+  const pathLabels = {
+    recruiter:"Recruiter", projects:"Projects", experience:"Experience",
+    credentials:"Credentials", education:"Education",
+    capabilities:"Capabilities", about:"About", contact:"Contact"
+  };
+
+  const routeParts = path => path.split("/").filter(Boolean);
+
+  function renderBreadcrumbs(path, page) {
+    const parts = routeParts(path);
+    if (!parts.length) return "";
+    let current = "";
+    const crumbs = ['<a href="/">Home</a>'];
+    parts.forEach((part, index) => {
+      current += "/" + part;
+      const label = index === parts.length - 1
+        ? page.title
+        : (pathLabels[part] || part.replace(/-/g, " "));
+      crumbs.push(index === parts.length - 1
+        ? `<span>${escapeHtml(label)}</span>`
+        : `<a href="${current}/">${escapeHtml(label)}</a>`);
+    });
+    return `<nav class="breadcrumbs" aria-label="Breadcrumb">${crumbs.join("<b aria-hidden='true'>/</b>")}</nav>`;
+  }
+
+  function actionLink(action) {
+    const [href, label, style] = action;
+    const external = /^https?:/i.test(href);
+    return `<a class="button ${style || "secondary"}" href="${href}"${external ? ' target="_blank" rel="noreferrer"' : ""}>${escapeHtml(label)}</a>`;
+  }
+
+  function renderPage(path, key) {
+    const page = window.EORA_PAGES[key] || window.EORA_PAGES.notfound;
+    document.title = `${page.title} | Eora Labs`;
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.content = page.lede || "";
+    main.innerHTML = `
+      <section class="page-hero ${page.compact ? "compact" : ""}" id="top">
+        <div class="inner">
+          ${renderBreadcrumbs(path, page)}
+          <p class="eyebrow">${page.eyebrow || ""}</p>
+          <h1>${page.headline || page.title}</h1>
+          <p class="hero-lede">${page.lede || ""}</p>
+          ${page.actions ? `<div class="hero-actions">${page.actions.map(actionLink).join("")}</div>` : ""}
+        </div>
+      </section>
+      ${page.content || ""}
+    `;
+    document.querySelectorAll(".site-nav a").forEach(link => {
+      const linkPath = new URL(link.href, location.origin).pathname;
+      if (path === linkPath || (linkPath !== "/" && path.startsWith(linkPath))) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+    document.querySelector("#siteNav")?.classList.remove("is-open");
+    document.querySelector("#menuToggle")?.setAttribute("aria-expanded", "false");
+    document.querySelector("#year")?.replaceChildren(String(new Date().getFullYear()));
+    return page;
+  }
+
+  function revealNewContent() {
+    const items = [...main.querySelectorAll(".reveal")];
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      items.forEach(item => item.classList.add("is-visible"));
+      return;
+    }
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    }), {threshold: .11});
+    items.forEach((item, index) => {
+      item.classList.remove("is-visible");
+      item.style.transitionDelay = `${Math.min(index * 34, 220)}ms`;
+      observer.observe(item);
+    });
+  }
+
+  async function pageKeyFor(url) {
+    const response = await fetch(url.href, {credentials: "same-origin"});
+    if (!response.ok) throw new Error(`Page request failed (${response.status})`);
+    const html = await response.text();
+    const parsed = new DOMParser().parseFromString(html, "text/html");
+    return parsed.body?.dataset.page || "notfound";
+  }
+
+  async function navigate(url, {replace = false, scroll = true} = {}) {
+    if (url.origin !== location.origin || url.pathname === location.pathname && url.search === location.search) {
+      if (url.hash) document.querySelector(url.hash)?.scrollIntoView({behavior: reducedMotion ? "auto" : "smooth"});
+      return;
+    }
+    body.classList.add("spa-leave");
+    try {
+      const key = await pageKeyFor(url);
+      if (!reducedMotion) await new Promise(resolve => setTimeout(resolve, 180));
+      renderPage(url.pathname, key);
+      if (replace) history.replaceState({path: url.pathname}, "", url.href);
+      else history.pushState({path: url.pathname}, "", url.href);
+      body.classList.remove("spa-leave");
+      body.classList.add("spa-enter");
+      requestAnimationFrame(() => requestAnimationFrame(() => body.classList.remove("spa-enter")));
+      if (scroll) scrollTo({top: 0, behavior: reducedMotion ? "auto" : "smooth"});
+      revealNewContent();
+    } catch (error) {
+      body.classList.remove("spa-leave");
+      console.warn("Eora Labs navigation fallback:", error);
+      location.href = url.href;
+    }
+  }
+
+  document.addEventListener("click", event => {
+    const link = event.target.closest("a");
+    if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const url = new URL(link.href, location.href);
+    if (url.origin !== location.origin || link.target === "_blank" ||
+        link.hasAttribute("download") || url.hash && url.pathname === location.pathname) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    navigate(url);
+  }, true);
+
+  addEventListener("popstate", () => navigate(new URL(location.href), {replace: true}));
+  history.replaceState({path: location.pathname}, "", location.href);
+
+  const transitionStyle = document.createElement("style");
+  transitionStyle.textContent = `
+    body.spa-leave #main { opacity: 0; transform: translateX(-2.5rem) scale(.985); filter: blur(5px); }
+    body.spa-enter #main { opacity: 0; transform: translateX(2.5rem) scale(.985); filter: blur(5px); }
+    #main { transition: opacity .28s ease, transform .34s cubic-bezier(.2,.8,.2,1), filter .28s ease; }
+    @media (prefers-reduced-motion: reduce) {
+      #main, body.spa-leave #main, body.spa-enter #main { transition: none; transform: none; filter: none; }
+    }
+  `;
+  document.head.appendChild(transitionStyle);
+})();
