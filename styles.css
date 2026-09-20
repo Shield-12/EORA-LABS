@@ -816,3 +816,9 @@ body.editorial-theme .audio-button[aria-pressed=true]{background:#111;color:#fff
   body.editorial-theme .side-panel{border-top:1px solid #c8c8c8;border-left:0;padding:1rem 0 0}
   body.editorial-theme .site-footer{align-items:flex-start}
 }
+
+
+/* Prevent any pre-theme flash or legacy loader state */
+html,body{background:#fff;color:#111}
+body.is-loading{overflow:auto}
+.page-loader{display:none!important}
