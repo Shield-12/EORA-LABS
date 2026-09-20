@@ -57,13 +57,12 @@
       <div class="scanline" aria-hidden="true"></div>
       <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
       <header class="site-header" id="siteHeader">
-        <a class="brand" href="/" aria-label="Eora Labs home"><span class="brand-mark">EL</span><span><strong>Eora Labs</strong><small>Langston Brown</small></span></a>
-        <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
-          <a href="/recruiter/">Recruiter</a><a href="/projects/">Projects</a><a href="/experience/">Experience</a><a href="/credentials/">Credentials</a><a href="/capabilities/">Capabilities</a><a href="/about/">About</a>
-        </nav>
+        <a class="brand" href="/" aria-label="Eora Labs home"><span class="brand-mark">EL</span><span><strong>Eora Labs</strong><small>Langston Brown · Systems Operations</small></span></a>
         <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Open navigation"><span></span><span></span><span></span></button>
-        <div class="header-actions"><a class="header-chip" href="/contact/">Contact</a></div>
       </header>
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+        <a href="/">Home</a><a href="/projects/">Projects</a><a href="/experience/">Experience</a><a href="/credentials/">Credentials</a><a href="/capabilities/">Capabilities</a><a href="/contact/">Contact</a>
+      </nav>
       <div class="audio-dock" id="audioDock">
         <button class="audio-button" id="audioToggle" type="button" aria-pressed="false" aria-label="Enable ambient music and interface sounds"><span class="audio-meter" aria-hidden="true"><i></i><i></i><i></i></span><span class="audio-label" id="audioLabel">Audio off</span></button>
         <label class="volume-wrap">Volume <input id="volumeControl" type="range" min="0" max="100" value="36" aria-label="Ambient music volume"></label>
