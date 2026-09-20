@@ -13,8 +13,6 @@
       compact: false,
       actions: [["/recruiter/","Recruiter overview","primary"],["/projects/","Explore the work","secondary"],["/contact/","Contact Langston","secondary"]],
       content: `
-        <section class="section band"><div class="inner command-grid">
-          <div clas      content: `
         <section class="section band reference-home">
           <div class="inner reference-home-grid">
             <article class="reference-copy reveal">
@@ -58,7 +56,13 @@
         <section class="section band">
           <div class="inner"><blockquote class="quote reveal">“A password reset is not only a ticket. It is an identity event, an access-control decision, and a continuity dependency.”</blockquote></div>
         </section>
-      `ew",
+      `
+      `
+    },
+
+    recruiter: {
+      title: "Recruiter Briefing",
+      eyebrow: "Fast professional review",
       headline: "A support foundation moving toward <em>systems and security ownership.</em>",
       lede: "Langston Brown is a Memphis-based information systems professional with more than seven years of IT experience across healthcare, customer field environments, and county government.",
       voice: "This recruiter briefing summarizes Langston Brown's experience, credentials, current technical lab, and target roles in systems administration, identity, endpoint administration, cybersecurity operations, and healthcare information technology.",
