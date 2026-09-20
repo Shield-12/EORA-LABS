@@ -694,3 +694,139 @@
   `;
   document.head.appendChild(transitionStyle);
 })();
+
+
+/* XMB-inspired navigation rail
+ * A horizontal, keyboard-friendly category and item strip inspired by
+ * console media menus without reproducing proprietary artwork.
+ */
+(() => {
+  "use strict";
+  const header = document.querySelector("#siteHeader");
+  if (!header || document.querySelector("#xmbShell")) return;
+
+  const groups = [
+    {
+      id: "home", label: "Home", glyph: "⌂",
+      items: [["Overview", "/", "Portfolio overview"]]
+    },
+    {
+      id: "projects", label: "Projects", glyph: "◆",
+      items: [
+        ["All projects", "/projects/", "Technical project index"],
+        ["EORA Toolkit", "/projects/eora-toolkit/", "Windows diagnostics and evidence reporting"],
+        ["Eora Lab", "/projects/eora-lab/", "Windows Server infrastructure lab"],
+        ["Healthcare identity", "/projects/healthcare-identity/", "Role-based access design"],
+        ["Wireless security", "/projects/wireless-security/", "Authorized Wi-Fi research"]
+      ]
+    },
+    {
+      id: "career", label: "Career", glyph: "▣",
+      items: [
+        ["Experience", "/experience/", "Healthcare, field, and public-sector operations"],
+        ["Recruiter briefing", "/recruiter/", "A concise technical profile"],
+        ["Capabilities", "/capabilities/", "Systems and security focus areas"]
+      ]
+    },
+    {
+      id: "proof", label: "Proof", glyph: "✓",
+      items: [
+        ["Credentials", "/credentials/", "Certifications and education"],
+        ["Education", "/education/", "Academic record"]
+      ]
+    },
+    {
+      id: "about", label: "About", glyph: "i",
+      items: [
+        ["About Eora Labs", "/about/", "Purpose and operating philosophy"],
+        ["Contact", "/contact/", "Start a conversation"]
+      ]
+    }
+  ];
+
+  const shell = document.createElement("section");
+  shell.id = "xmbShell";
+  shell.className = "xmb-shell";
+  shell.setAttribute("aria-label", "Eora Labs quick navigation");
+  shell.innerHTML = `
+    <div class="xmb-category-wrap">
+      <p class="xmb-kicker">EORA LABS / QUICK NAVIGATION</p>
+      <div class="xmb-categories" role="tablist" aria-label="Navigation categories"></div>
+    </div>
+    <div class="xmb-items" role="list" aria-live="polite"></div>
+  `;
+  header.insertAdjacentElement("afterend", shell);
+
+  const categories = shell.querySelector(".xmb-categories");
+  const items = shell.querySelector(".xmb-items");
+  let selectedGroup = groups[0];
+
+  function currentGroup() {
+    const path = location.pathname;
+    if (path.startsWith("/projects/")) return groups.find(group => group.id === "projects");
+    if (path.startsWith("/experience/") || path.startsWith("/recruiter/") || path.startsWith("/capabilities/")) return groups.find(group => group.id === "career");
+    if (path.startsWith("/credentials/") || path.startsWith("/education/")) return groups.find(group => group.id === "proof");
+    if (path.startsWith("/about/") || path.startsWith("/contact/")) return groups.find(group => group.id === "about");
+    return groups[0];
+  }
+
+  function renderCategories() {
+    categories.innerHTML = groups.map((group, index) => `
+      <button class="xmb-category" type="button" role="tab" data-group="${group.id}" aria-selected="${group.id === selectedGroup.id}">
+        <span class="xmb-glyph" aria-hidden="true">${group.glyph}</span>
+        <span>${group.label}</span>
+        <small>${String(index + 1).padStart(2, "0")}</small>
+      </button>`).join("");
+  }
+
+  function renderItems() {
+    items.innerHTML = selectedGroup.items.map(([label, href, description], index) => `
+      <a class="xmb-item" href="${href}" role="listitem">
+        <span class="xmb-item-index">${String(index + 1).padStart(2, "0")}</span>
+        <span class="xmb-item-copy"><strong>${label}</strong><small>${description}</small></span>
+        <span class="xmb-arrow" aria-hidden="true">↗</span>
+      </a>`).join("");
+  }
+
+  function selectGroup(id) {
+    selectedGroup = groups.find(group => group.id === id) || groups[0];
+    renderCategories();
+    renderItems();
+    shell.classList.remove("xmb-refresh");
+    requestAnimationFrame(() => shell.classList.add("xmb-refresh"));
+    shell.querySelector(`[data-group="${selectedGroup.id}"]`)?.focus({preventScroll:true});
+  }
+
+  categories.addEventListener("click", event => {
+    const button = event.target.closest("[data-group]");
+    if (button) selectGroup(button.dataset.group);
+  });
+
+  categories.addEventListener("keydown", event => {
+    const buttons = [...categories.querySelectorAll(".xmb-category")];
+    const index = buttons.indexOf(event.target);
+    if (index < 0) return;
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      event.preventDefault();
+      buttons[(index + 1) % buttons.length].focus();
+    }
+    if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      event.preventDefault();
+      buttons[(index - 1 + buttons.length) % buttons.length].focus();
+    }
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      selectGroup(event.target.dataset.group);
+    }
+  });
+
+  selectedGroup = currentGroup();
+  renderCategories();
+  renderItems();
+
+  addEventListener("popstate", () => {
+    selectedGroup = currentGroup();
+    renderCategories();
+    renderItems();
+  });
+})();
