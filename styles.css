@@ -48,3 +48,14 @@ main{min-height:100vh}.page-hero{position:relative;display:grid;align-items:end;
 @keyframes xmbRailIn{from{opacity:.25;transform:translateX(1.5rem)}to{opacity:1;transform:translateX(0)}}
 @media(max-width:760px){.xmb-shell{margin-top:4.7rem;padding:0 .65rem}.xmb-item{min-width:190px}.xmb-category{padding:.58rem .67rem}.xmb-kicker{font-size:.58rem}}
 @media(prefers-reduced-motion:reduce){.xmb-shell,.xmb-category,.xmb-item{transition:none}.xmb-refresh .xmb-items{animation:none}}
+
+
+/* Cursor-responsive interaction polish */
+.xmb-shell{transform:translate3d(var(--cursor-drift-x,0),var(--cursor-drift-y,0),0)}
+.xmb-item,.button,.page-link,.card,.xmb-category{position:relative;overflow:hidden}
+.xmb-item::before,.button::before,.page-link::before,.card::before,.xmb-category::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--pointer-x,50%) var(--pointer-y,50%),rgba(137,226,255,.2),transparent 42%);opacity:0;pointer-events:none;transition:opacity .2s ease}
+.xmb-item:hover::before,.button:hover::before,.page-link:hover::before,.card:hover::before,.xmb-category:hover::before{opacity:1}
+.interaction-ripple{position:absolute;z-index:2;width:12px;height:12px;margin:-6px;border-radius:50%;background:rgba(184,245,255,.7);box-shadow:0 0 0 1px rgba(184,245,255,.45),0 0 24px rgba(104,220,255,.8);pointer-events:none;animation:interactionRipple .58s ease-out forwards}
+@keyframes interactionRipple{0%{opacity:.9;transform:scale(.25)}70%{opacity:.42}100%{opacity:0;transform:scale(18)}}
+.site-header,.xmb-shell,.audio-dock{will-change:transform}
+@media(prefers-reduced-motion:reduce){.xmb-shell{transform:none}.interaction-ripple{display:none}.xmb-item::before,.button::before,.page-link::before,.card::before,.xmb-category::before{transition:none}}
