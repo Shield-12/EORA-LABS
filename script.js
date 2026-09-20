@@ -892,3 +892,11 @@
 (() => {
   document.body.classList.add("editorial-theme");
 })();
+
+
+/* Editorial correction: no blocking loader */
+(() => {
+  const loader = document.querySelector("#pageLoader");
+  if (loader) loader.remove();
+  document.body.classList.remove("is-loading");
+})();
