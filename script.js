@@ -886,3 +886,9 @@
     }
   }, {passive:true});
 })();
+
+
+/* Editorial portfolio theme toggle */
+(() => {
+  document.body.classList.add("editorial-theme");
+})();
