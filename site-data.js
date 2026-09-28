@@ -67,7 +67,7 @@
       voice: "This recruiter briefing summarizes Langston Brown's experience, credentials, current technical lab, and target roles in systems administration, identity, endpoint administration, cybersecurity operations, and healthcare information technology.",
       actions: [["/experience/","Review experience","primary"],["/projects/eora-lab/","Open flagship lab","secondary"],["/contact/","Contact","secondary"]],
       content: `
-        <section class="section"><div class="inner"><div class="stat-grid reveal"><div class="stat"><strong data-count="7">0</strong><span>Years in IT</span></div><div class="stat"><strong data-count="3">0</strong><span>Operating environments</span></div><div class="stat"><strong data-count="6">0</strong><span>Credentials earned</span></div><div class="stat"><strong data-count="4">0</strong><span>Portfolio case studies</span></div></div></div></section>
+        <section class="section"><div class="inner"><div class="stat-grid reveal"><div class="stat"><strong data-count="7">7</strong><span>Years in IT</span></div><div class="stat"><strong data-count="3">3</strong><span>Operating environments</span></div><div class="stat"><strong data-count="6">6</strong><span>Credentials earned</span></div><div class="stat"><strong data-count="4">4</strong><span>Portfolio case studies</span></div></div></div></section>
         ${detail(`
           <p class="eyebrow">Candidate summary</p><h2>Operationally grounded and deliberately advancing.</h2>
           <p>Langston's background began with hands-on support in HIPAA-regulated clinical settings, expanded into field engineering and customer deployments, and continued in enterprise public-sector service delivery. That history provides practical exposure to the human and business consequences of identity failures, endpoint outages, missing documentation, weak escalation paths, and unreliable infrastructure.</p>
@@ -488,6 +488,19 @@
       content: `${detail(`<h2>Start a professional conversation</h2><p>The most useful outreach includes the role title, organization, location or remote expectations, compensation range, reporting structure, core technologies, and the problems the team needs the position to solve.</p><h3>Best-fit discussions</h3><ul class="check-list"><li>Systems or junior systems administration</li><li>Identity and access administration</li><li>Endpoint or Microsoft 365 administration</li><li>Healthcare information technology</li><li>Cybersecurity operations or security-minded infrastructure support</li><li>Technical projects where documentation and repeatability matter</li></ul><div class="card-actions"><a class="button primary" href="mailto:langston.brown03@gmail.com">langston.brown03@gmail.com</a><a class="button secondary" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/k0326/">LinkedIn profile</a></div>`,`<span class="status current">Open to opportunities</span><h3>Professional focus</h3><dl><div><dt>Location</dt><dd>Memphis, Tennessee</dd></div><div><dt>Primary paths</dt><dd>Systems · IAM · Endpoint · Security</dd></div><div><dt>Industry preference</dt><dd>Healthcare and enterprise IT</dd></div><div><dt>Portfolio</dt><dd>eoralabs.com</dd></div></dl>`)}${nextLinks([["/recruiter/","Candidate summary","Recruiter briefing"],["/projects/eora-lab/","Flagship evidence","Eora Enterprise Lab"]])}`
     },
 
+    education: {
+      title: "Education",
+      eyebrow: "Academic record",
+      headline: "Degrees that connect <em>operations and systems.</em>",
+      lede: "Formal education sits alongside certifications and hands-on work: an Associate of Science and a B.B.A. in Management Information Systems completed while building a healthcare and enterprise support career.",
+      voice: "Education milestones include an Associate of Science from Southwest Tennessee Community College and a Bachelor of Business Administration in Management Information Systems from the University of Memphis.",
+      actions: [["/education/university-of-memphis/","University of Memphis","primary"],["/credentials/","Credentials","secondary"]],
+      content: `${heroCards([
+        {title:"B.B.A. in Management Information Systems",text:"University of Memphis, completed in 2026. Connects business analysis, organizational context, and systems thinking to technical operations.",tags:["Business","Information systems","2026"],href:"/education/university-of-memphis/",wide:true,status:"Completed",statusClass:"status current"},
+        {title:"Associate of Science",text:"Southwest Tennessee Community College, awarded August 11, 2022. Academic bridge from early healthcare IT work to the MIS bachelor's degree.",tags:["Associate degree","2022"],href:"/education/southwest-tennessee/",status:"Awarded",statusClass:"status earned"}
+      ])}`
+    },
+
     notfound: {
       title: "Page Not Found",
       eyebrow: "404 · Route unavailable",
@@ -498,4 +511,8 @@
       content: `<section class="section"><div class="inner"><blockquote class="quote reveal">Route resolution failed. No production systems were harmed.</blockquote></div></section>`
     }
   };
+
+  // HTML shells use data-page values that must resolve here.
+  window.EORA_PAGES["project-healthcare"] = window.EORA_PAGES["project-identity"];
+  window.EORA_PAGES["project-infrastructure"] = window.EORA_PAGES["project-operations"];
 })();

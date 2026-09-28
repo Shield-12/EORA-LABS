@@ -573,18 +573,58 @@
     const items = [...main.querySelectorAll(".reveal")];
     if (reducedMotion || !("IntersectionObserver" in window)) {
       items.forEach(item => item.classList.add("is-visible"));
-      return;
+    } else {
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      }), {threshold: .11});
+      items.forEach((item, index) => {
+        item.classList.remove("is-visible");
+        item.style.transitionDelay = `${Math.min(index * 34, 220)}ms`;
+        observer.observe(item);
+      });
     }
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
+    animateCounts();
+  }
+
+  function animateCounts() {
+    [...main.querySelectorAll("[data-count]")].forEach(el => {
+      if (el.dataset.countReady === "1") return;
+      const target = Number(el.dataset.count);
+      if (!Number.isFinite(target)) return;
+      el.dataset.countReady = "1";
+      if (reducedMotion) {
+        el.textContent = String(target);
+        return;
       }
-    }), {threshold: .11});
-    items.forEach((item, index) => {
-      item.classList.remove("is-visible");
-      item.style.transitionDelay = `${Math.min(index * 34, 220)}ms`;
-      observer.observe(item);
+      let done = false;
+      const run = () => {
+        if (done) return;
+        done = true;
+        const start = performance.now();
+        const tick = now => {
+          const p = Math.min((now - start) / 1000, 1);
+          el.textContent = String(Math.round(target * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(entries => {
+          if (entries[0] && entries[0].isIntersecting) {
+            run();
+            io.disconnect();
+          }
+        }, {threshold: 0.2});
+        io.observe(el);
+        // If already on-screen (common after SPA navigation), start immediately.
+        const rect = el.getBoundingClientRect();
+        if (rect.top < innerHeight && rect.bottom > 0) run();
+      } else {
+        run();
+      }
     });
   }
 
