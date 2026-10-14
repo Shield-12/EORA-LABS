@@ -492,10 +492,11 @@
       title: "Education",
       eyebrow: "Academic record",
       headline: "Degrees that connect <em>operations and systems.</em>",
-      lede: "Formal education sits alongside certifications and hands-on work: an Associate of Science and a B.B.A. in Management Information Systems completed while building a healthcare and enterprise support career.",
+      lede: "Formal education sits alongside certifications and hands-on work: an Associate of Science and a B.B.A. in Management Information Systems completed while building a healthcare and enterprise support career, with graduate study in Information Systems beginning Fall 2027.",
       voice: "Education milestones include an Associate of Science from Southwest Tennessee Community College and a Bachelor of Business Administration in Management Information Systems from the University of Memphis.",
       actions: [["/education/university-of-memphis/","University of Memphis","primary"],["/credentials/","Credentials","secondary"]],
       content: `${heroCards([
+        {title:"M.S. in Information Systems",text:"University of Memphis graduate program. Admitted for Fall 2027, extending the MIS foundation into graduate-level systems, data, and technology management.",tags:["Graduate","Information systems","Fall 2027"],wide:true,status:"Admitted",statusClass:"status current"},
         {title:"B.B.A. in Management Information Systems",text:"University of Memphis, completed in 2026. Connects business analysis, organizational context, and systems thinking to technical operations.",tags:["Business","Information systems","2026"],href:"/education/university-of-memphis/",wide:true,status:"Completed",statusClass:"status current"},
         {title:"Associate of Science",text:"Southwest Tennessee Community College, awarded August 11, 2022. Academic bridge from early healthcare IT work to the MIS bachelor's degree.",tags:["Associate degree","2022"],href:"/education/southwest-tennessee/",status:"Awarded",statusClass:"status earned"}
       ])}`
