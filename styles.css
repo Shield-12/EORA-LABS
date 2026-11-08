@@ -880,6 +880,12 @@ body.editorial-theme .resume-qualifications dd{margin:.15rem 0 0;color:#333}
   .site-header,.site-nav,.audio-dock,.audio-hint,.shortcut-panel,.site-footer,.skip-link,.eora-loader,#xmbShell,.page-hero,.resume-actions,#networkCanvas,.grid-field,.noise-field,.scanline,.cursor-glow{display:none!important}
   body,.resume-sheet{background:#fff!important;color:#000!important}
   .resume-sheet{padding-top:0}
+  body.editorial-theme .resume-role{display:block}
+  body.editorial-theme .resume-role h3,
+  body.editorial-theme .resume-role time{display:block;white-space:normal}
+  body.editorial-theme .resume-sheet article{break-inside:auto}
+  body.editorial-theme .resume-sheet h2,
+  body.editorial-theme .resume-sheet h3{break-inside:avoid;break-after:avoid}
   a{color:#000;text-decoration:none}
   @page{margin:14mm}
 }

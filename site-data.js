@@ -112,7 +112,7 @@
         <h2>Role context</h2><p>County government technology support requires balancing user urgency, policy, access control, multiple departments, legacy dependencies, escalation boundaries, and continuity expectations. The work was not merely device repair; it was operational coordination across a broad enterprise user base.</p>
         <h3>Responsibilities and exposure</h3><ul><li>Administered Windows Server, Active Directory, and Microsoft 365 services supporting 5,000+ users, including endpoint asset assignment, organizational unit structure, and license allocation across county departments.</li><li>Provisioned and enrolled endpoints into device management and MDM platforms, and checked compliance configuration and organizational unit placement on deployment or domain rejoin.</li><li>Managed Microsoft 365 license assignment and harvesting, Exchange Online mailbox provisioning, distribution list management, and MFA configuration.</li><li>Oversaw endpoint patch cycles and routine maintenance across desktops, laptops, and servers.</li><li>Troubleshot network connectivity failures at the switch level with Orion SolarWinds monitoring, locating devices by MAC address.</li><li>Authored PowerShell automation for enterprise software deployment, including a script to silently install Oracle Smart View with required runtime dependencies.</li><li>Handled service requests involving account access, password resets, lockouts, Windows endpoints, mobile devices, printers, and peripheral equipment, and provided Tier II/III guidance to end users and junior staff.</li><li>Participated in an on-call rotation every other month and documented procedures for handoff and audit readiness.</li></ul>
         <h3>Enterprise lesson</h3><p>A mature service desk is an observability layer for the organization. Repeated password lockouts, printer failures, connectivity tickets, or device problems can reveal deeper weaknesses in configuration, identity design, lifecycle management, documentation, or ownership.</p>
-        <div class="callout"><strong>Scope on the résumé</strong><p>The current résumé describes administration of Windows Server, Active Directory, and Microsoft 365 for this 5,000+ user environment. This page follows that scope. It does not add a separate claim of ownership over county architecture.</p></div>
+        <div class="callout"><strong>Scope</strong><p>The role included administration of Windows Server, Active Directory, and Microsoft 365 for a 5,000+ user environment, including endpoint assignment, organizational unit structure, license allocation, and patch cycles.</p></div>
       `,`<h3>Environment profile</h3><dl><div><dt>Sector</dt><dd>County government</dd></div><div><dt>Role</dt><dd>Customer Support Technician II</dd></div><div><dt>Dates</dt><dd>April 2024 – May 2026</dd></div><div><dt>Schedule</dt><dd>40 hours per week</dd></div><div><dt>Core domains</dt><dd>Identity support, M365, endpoints, MDM, patching, SolarWinds</dd></div><div><dt>Operational element</dt><dd>On-call rotation every other month</dd></div></dl>`)}
       ${nextLinks([["/experience/lakeside-behavioral-health/","Later role","Lakeside Behavioral Health"],["/experience/eresources/","Earlier role","eResources field engineering"]])}`
     },
@@ -332,10 +332,10 @@
       title: "CompTIA A+",
       eyebrow: "Historical credential · Expired",
       headline: "The endpoint foundation that started <em>before the first full-time IT role.</em>",
-      lede: "Earned April 20, 2018. The current résumé records this as a historical CompTIA A+ certification that expired April 20, 2023.",
-      voice: "Langston earned CompTIA A Plus on April twentieth, 2018. The résumé records it as a historical certification that expired April twentieth, 2023.",
+      lede: "Earned April 20, 2018. Historical CompTIA A+ certification, expired April 20, 2023.",
+      voice: "Langston earned CompTIA A Plus on April twentieth, 2018. It is a historical certification that expired April twentieth, 2023.",
       actions: [["/credentials/","All credentials","primary"],["/experience/alliance-healthcare-services/","Early career context","secondary"]],
-      content: `${detail(`<h2>Credential scope</h2><p>A+ covers endpoint hardware, operating systems, troubleshooting, networking basics, security, mobile devices, operational procedures, and customer support.</p><h3>Career relevance</h3><p>The credential was earned shortly before the beginning of the long-term healthcare IT role. It represents the technical and troubleshooting foundation that later expanded into networking, security, identity, and systems work.</p><div class="callout"><strong>Status clarity</strong><p>A+ is historical and expired. The résumé lists it as issued April 20, 2018 and expired April 20, 2023. It is not a current certification. Candidate IDs and verification codes are omitted.</p></div>`,`<span class="status prior">Expired</span><h3>Credential record</h3><dl><div><dt>Issuer</dt><dd>CompTIA</dd></div><div><dt>Earned</dt><dd>April 20, 2018</dd></div><div><dt>Expired</dt><dd>April 20, 2023</dd></div><div><dt>Status</dt><dd>Historical</dd></div><div><dt>Focus</dt><dd>Endpoint and support foundations</dd></div></dl>`)}${nextLinks([["/credentials/comptia-itf/","Earlier credential","CompTIA IT Fundamentals+"],["/experience/alliance-healthcare-services/","Applied context","Healthcare IT role"]])}`
+      content: `${detail(`<h2>Credential scope</h2><p>A+ covers endpoint hardware, operating systems, troubleshooting, networking basics, security, mobile devices, operational procedures, and customer support.</p><h3>Career relevance</h3><p>The credential was earned shortly before the beginning of the long-term healthcare IT role. It represents the technical and troubleshooting foundation that later expanded into networking, security, identity, and systems work.</p><div class="callout"><strong>Status clarity</strong><p>A+ is a historical certification. It was issued April 20, 2018 and expired April 20, 2023.</p></div>`,`<span class="status prior">Expired</span><h3>Credential record</h3><dl><div><dt>Issuer</dt><dd>CompTIA</dd></div><div><dt>Earned</dt><dd>April 20, 2018</dd></div><div><dt>Expired</dt><dd>April 20, 2023</dd></div><div><dt>Status</dt><dd>Historical</dd></div><div><dt>Focus</dt><dd>Endpoint and support foundations</dd></div></dl>`)}${nextLinks([["/credentials/comptia-itf/","Earlier credential","CompTIA IT Fundamentals+"],["/experience/alliance-healthcare-services/","Applied context","Healthcare IT role"]])}`
     },
 
     "credential-itf": {
@@ -372,7 +372,7 @@
       title: "Southwest Tennessee Community College",
       eyebrow: "Associate of Science · 2022",
       headline: "A completed foundation for <em>continued academic progression.</em>",
-      lede: "The diploma records an Associate of Science awarded August 11, 2022 by Southwest Tennessee Community College. The current résumé names the degree General Studies – Information Systems (Tennessee Transfer Pathway), records conferral in 2022, lists a 3.8 GPA, and notes SACSCOC accreditation.",
+      lede: "Associate of Science, General Studies – Information Systems (Tennessee Transfer Pathway), awarded August 11, 2022 by Southwest Tennessee Community College. GPA 3.8. SACSCOC accredited.",
       voice: "Langston earned an Associate of Science from Southwest Tennessee Community College on August eleventh, 2022.",
       actions: [["/credentials/","Credentials and education","primary"],["/education/university-of-memphis/","Bachelor's degree","secondary"]],
       content: `${detail(`<h2>Education milestone</h2><p>The associate degree represents persistence through the early professional career and served as the academic bridge to the University of Memphis Management Information Systems program.</p><h3>Career context</h3><p>The degree was completed while the professional foundation was already being built through healthcare IT work. That combination matters: academic progression did not occur in isolation from real operational experience.</p>`,`<h3>Education record</h3><dl><div><dt>Institution</dt><dd>Southwest Tennessee Community College</dd></div><div><dt>Degree</dt><dd>Associate of Science, General Studies – Information Systems (Tennessee Transfer Pathway)</dd></div><div><dt>Awarded</dt><dd>August 11, 2022</dd></div><div><dt>Résumé conferral</dt><dd>2022</dd></div><div><dt>GPA</dt><dd>3.8</dd></div><div><dt>Accreditation</dt><dd>SACSCOC</dd></div><div><dt>Location</dt><dd>Memphis, Tennessee</dd></div></dl>`)}${nextLinks([["/education/university-of-memphis/","Next degree","B.B.A. in MIS"],["/experience/alliance-healthcare-services/","Concurrent career foundation","Healthcare IT experience"]])}`
@@ -501,7 +501,7 @@
       content: `${heroCards([
         {title:"M.S. in Information Systems",text:"University of Memphis graduate program. Admitted for Fall 2027, extending the MIS foundation into graduate-level systems, data, and technology management.",tags:["Graduate","Information systems","Fall 2027"],wide:true,status:"Admitted",statusClass:"status current"},
         {title:"B.B.A. in Management Information Systems",text:"University of Memphis, conferred May 2026. GPA 3.28. SACSCOC accredited. Connects business analysis, organizational context, and systems thinking to technical operations.",tags:["Business","Information systems","May 2026"],href:"/education/university-of-memphis/",wide:true,status:"Completed",statusClass:"status current"},
-        {title:"Associate of Science",text:"Southwest Tennessee Community College. General Studies – Information Systems (Tennessee Transfer Pathway). The résumé records conferral in 2022. GPA 3.8. SACSCOC accredited.",tags:["Associate degree","2022"],href:"/education/southwest-tennessee/",status:"Awarded",statusClass:"status earned"}
+        {title:"Associate of Science",text:"Southwest Tennessee Community College. General Studies – Information Systems (Tennessee Transfer Pathway). Awarded August 11, 2022. GPA 3.8. SACSCOC accredited.",tags:["Associate degree","2022"],href:"/education/southwest-tennessee/",status:"Awarded",statusClass:"status earned"}
       ])}`
     },
 
@@ -509,13 +509,12 @@
       title: "Résumé",
       eyebrow: "Langston Brown · Memphis, Tennessee",
       headline: "Résumé.",
-      lede: "Accessible transcription of the current résumé. The PDF is a newly typeset public copy. Phone, email, candidate IDs, verification codes, certification numbers, and citizenship or clearance statements are left off this page.",
-      voice: "This page presents Langston Brown's résumé in accessible text, with a sanitized PDF download. Contact remains on the contact page.",
+      lede: "Professional résumé for Langston Brown, an information systems professional in Memphis. Healthcare IT, field engineering, and county-government support, with current cybersecurity certifications.",
+      voice: "Professional résumé for Langston Brown, an information systems professional in Memphis.",
       compact: true,
       actions: [["/contact/","Contact","primary"],["/experience/","Experience","secondary"],["/credentials/","Credentials","secondary"]],
       content: `
         <section class="section resume-sheet"><div class="inner">
-          <p class="resume-note">This public copy leaves off the phone number, email address, candidate IDs, verification codes, certification numbers, and citizenship or clearance statements from the source document. Use the <a href="/contact/">contact page</a> for outreach. Microsoft Azure is a foundational skill here, not a certification. CompTIA A+ is historical and expired. The Lakeside ticketing system is being designed and is not described as completed.</p>
           <div class="resume-actions">
             <a class="button primary" href="/resume/langston-brown-resume.pdf" download="langston-brown-resume.pdf" type="application/pdf">Download résumé PDF</a>
             <a class="button secondary" href="/contact/">Contact</a>
@@ -544,7 +543,7 @@
             <div><dt>Asset and device management</dt><dd>Endpoint imaging and deployment, MDM/mobile device enrollment, device compliance configuration, hardware lifecycle documentation, asset inventory tracking, patch management.</dd></div>
             <div><dt>Identity and license management</dt><dd>Active Directory, Group Policy, Microsoft 365 license assignment and harvesting, Exchange Online mailbox provisioning, distribution list management, MFA/RBAC.</dd></div>
             <div><dt>Operating systems</dt><dd>Windows Server 2016/2019, Windows 10, Windows 11.</dd></div>
-            <div><dt>Virtualization and cloud</dt><dd>VMware vSphere, Hyper-V, Microsoft Azure (foundational), Microsoft 365 administration. Azure is listed as foundational skill only and is not a certification.</dd></div>
+            <div><dt>Virtualization and cloud</dt><dd>VMware vSphere, Hyper-V, Microsoft Azure (foundational), Microsoft 365 administration.</dd></div>
             <div><dt>Networking and infrastructure</dt><dd>DNS, DHCP, TCP/IP, VLANs, VPN, RDP, SMB, switch port administration, Orion SolarWinds monitoring.</dd></div>
             <div><dt>Cybersecurity</dt><dd>Endpoint protection, vulnerability management, security hardening, log review, HIPAA compliance.</dd></div>
             <div><dt>Automation and documentation</dt><dd>PowerShell scripting, automated software deployment, ITIL-aligned incident/change management, knowledge base authoring.</dd></div>
@@ -564,7 +563,7 @@
               <li>Provision new-hire workstations end to end (Dell laptop and dock, multi-monitor setup, Avaya J179), coordinating extension assignment with the PBX administrator.</li>
               <li>Replace failed hardware on clinical workstations on wheels and document device, network, and hardware details ahead of planned retirements.</li>
               <li>Resolve password resets, account lockouts, VPN, and SSO access requests for clinical and administrative staff.</li>
-              <li>Designing a SharePoint self-service IT ticketing system (Microsoft Forms/Power Apps, Power Automate alerts, knowledge base, PnP PowerShell deployment), approved by my supervisor, to take routine requests off the IT team. This work is in progress and is not described as completed.</li>
+              <li>Designing a SharePoint self-service IT ticketing system (Microsoft Forms/Power Apps, Power Automate alerts, knowledge base, PnP PowerShell deployment), approved by my supervisor, to take routine requests off the IT team.</li>
             </ul>
           </article>
           <article>
@@ -605,7 +604,7 @@
           </article>
 
           <h2>Additional employment — 2023 to 2024</h2>
-          <p>While completing coursework toward a Bachelor of Business Administration at the University of Memphis: Package Handler, FedEx Ground (part-time); Delivery Driver, Domino's Pizza (part-time); Grocery Associate, The Fresh Market (part-time) — roles emphasizing high-volume accuracy, time-sensitive processing, and direct customer service. The résumé gives the year range only and does not list months for these roles.</p>
+          <p>While completing coursework toward a Bachelor of Business Administration at the University of Memphis: Package Handler, FedEx Ground (part-time); Delivery Driver, Domino's Pizza (part-time); Grocery Associate, The Fresh Market (part-time) — roles emphasizing high-volume accuracy, time-sensitive processing, and direct customer service.</p>
 
           <h2>Education</h2>
           <article>
@@ -625,7 +624,6 @@
             <li>ISC2 Certified in Cybersecurity (CC). Issued February 1, 2024. Expires January 31, 2027.</li>
             <li>CompTIA A+ (historical). Issued April 20, 2018. Expired April 20, 2023.</li>
           </ul>
-          <p>Verification codes, candidate IDs, and the ISC2 certification number are omitted.</p>
           <h2>References</h2>
           <p>References available upon request.</p>
         </div></section>`
@@ -639,7 +637,7 @@
       voice: "Langston is an IT Support Technician at Lakeside Behavioral Health, a UHS inpatient behavioral health campus in Memphis, since September 2026.",
       actions: [["/resume/","Résumé","primary"],["/experience/","All experience","secondary"]],
       content: `${detail(`
-        <h2>Role context</h2><p>The résumé describes on-site Tier I/II support as one of two IT staff for a HIPAA-regulated, 39-acre, 400-employee inpatient behavioral health facility. The work covers endpoints, printers, VoIP phones, and network drops across multiple buildings and clinical units.</p>
+        <h2>Role context</h2><p>On-site Tier I/II support as one of two IT staff for a HIPAA-regulated, 39-acre, 400-employee inpatient behavioral health facility. The work covers endpoints, printers, VoIP phones, and network drops across multiple buildings and clinical units.</p>
         <h3>Responsibilities</h3><ul>
           <li>Troubleshoot Avaya IP phone outages down to the switch port, including suspected err-disabled ports and voice VLAN problems, and write escalations to corporate network and telecom teams with MAC addresses, serials, and remediation steps.</li>
           <li>Trace and document physical-layer cabling at IDFs with a tone generator, mapping phone and printer drops to switch ports.</li>
@@ -648,9 +646,9 @@
           <li>Replace failed hardware on clinical workstations on wheels and document device, network, and hardware details ahead of planned retirements.</li>
           <li>Resolve password resets, account lockouts, VPN, and SSO access requests for clinical and administrative staff.</li>
         </ul>
-        <div class="callout"><strong>In progress, not completed</strong><p>A SharePoint self-service IT ticketing system is being designed. The résumé names Microsoft Forms, Power Apps, Power Automate alerts, a knowledge base, and PnP PowerShell deployment, and says the supervisor approved the effort so routine requests can come off the IT team. It does not describe the system as finished.</p></div>
+        <div class="callout"><strong>In progress</strong><p>Designing a SharePoint self-service IT ticketing system with Microsoft Forms, Power Apps, Power Automate alerts, a knowledge base, and PnP PowerShell deployment. The supervisor approved the effort so routine requests can come off the IT team.</p></div>
       `,`<span class="status current">Current</span><h3>Environment profile</h3><dl><div><dt>Organization</dt><dd>Lakeside Behavioral Health (UHS)</dd></div><div><dt>Sector</dt><dd>Inpatient behavioral health</dd></div><div><dt>Role</dt><dd>IT Support Technician</dd></div><div><dt>Dates</dt><dd>September 2026 – present</dd></div><div><dt>Schedule</dt><dd>40 hours per week, on site</dd></div><div><dt>Campus</dt><dd>39 acres, about 400 employees</dd></div><div><dt>Compliance context</dt><dd>HIPAA-regulated operations</dd></div></dl>`)}
-      ${nextLinks([["/resume/","Full résumé","Accessible transcription and PDF"],["/experience/shelby-county-government/","Previous role","Shelby County Government"]])}`
+      ${nextLinks([["/resume/","Full résumé","Résumé and PDF"],["/experience/shelby-county-government/","Previous role","Shelby County Government"]])}`
     },
 
     notfound: {
