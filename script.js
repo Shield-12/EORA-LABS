@@ -17,7 +17,7 @@
   function breadcrumbs() {
     if (key === "home") return "";
     const parts = location.pathname.split("/").filter(Boolean);
-    const labels = {recruiter:"Recruiter",projects:"Projects",experience:"Experience",credentials:"Credentials",education:"Education",capabilities:"Capabilities",about:"About",contact:"Contact"};
+    const labels = {recruiter:"Recruiter",projects:"Projects",experience:"Experience",resume:"Résumé",credentials:"Credentials",education:"Education",capabilities:"Capabilities",about:"About",contact:"Contact"};
     let path = "";
     const crumbs = ['<a href="/">Home</a>'];
     parts.forEach((part, index) => {
@@ -61,28 +61,29 @@
         <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Open navigation"><span></span><span></span><span></span></button>
       </header>
       <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
-        <a href="/">Home</a><a href="/projects/">Projects</a><a href="/experience/">Experience</a><a href="/credentials/">Credentials</a><a href="/capabilities/">Capabilities</a><a href="/contact/">Contact</a>
+        <a href="/">Home</a><a href="/projects/">Projects</a><a href="/experience/">Experience</a><a href="/resume/">Résumé</a><a href="/credentials/">Credentials</a><a href="/capabilities/">Capabilities</a><a href="/contact/">Contact</a>
       </nav>
       <div class="audio-dock" id="audioDock">
-        <button class="audio-button" id="audioToggle" type="button" aria-pressed="false" aria-label="Enable ambient music and interface sounds"><span class="audio-meter" aria-hidden="true"><i></i><i></i><i></i></span><span class="audio-label" id="audioLabel">Audio off</span></button>
-        <label class="volume-wrap">Volume <input id="volumeControl" type="range" min="0" max="100" value="36" aria-label="Ambient music volume"></label>
-        <button class="voice-button" id="voiceGuide" type="button" aria-label="Read a short voice guide for this page" title="Voice guide">◉</button>
+        <button class="audio-button" id="audioToggle" type="button" aria-pressed="false" aria-label="Turn on interaction sounds"><span class="audio-meter" aria-hidden="true"><i></i><i></i><i></i></span><span class="audio-label" id="audioLabel">Sounds off</span></button>
+        <label class="volume-wrap">Level <input id="volumeControl" type="range" min="0" max="100" value="22" aria-label="Interaction sound level"></label>
         <button class="shortcut-button" id="shortcutButton" type="button" aria-label="Show keyboard shortcuts" title="Keyboard shortcuts">?</button>
       </div>
-      <div class="audio-hint">Generative ambient music, spatial hover cues, scrolling pulses, and interface feedback. Everything can be muted.</div>
-      <div class="shortcut-panel" id="shortcutPanel"><strong>Keyboard controls</strong><p><b>M</b> — mute or enable audio</p><p><b>G</b> — voice guide</p><p><b>H</b> — home</p><p><b>?</b> — show or hide this panel</p></div>
+      <div class="audio-hint">Optional interaction sounds stay off until this control is turned on. Hovering and scrolling stay quiet.</div>
+      <div class="shortcut-panel" id="shortcutPanel"><strong>Keyboard controls</strong><p><b>M</b> — turn interaction sounds on or off</p><p><b>H</b> — home</p><p><b>?</b> — show or hide this panel</p><p>Sounds stay off until you turn them on.</p></div>
     `);
 
     body.insertAdjacentHTML("beforeend", `
       <footer class="site-footer">
         <div><a class="brand" href="/"><span class="brand-mark">EL</span><span><strong>Eora Labs</strong><small>Systems · Security · Infrastructure</small></span></a><p>© <span id="year"></span> Langston Brown. Built as a living technical portfolio.</p></div>
-        <div class="footer-links"><a href="/projects/">Projects</a><a href="/experience/">Experience</a><a href="/credentials/">Credentials</a><a href="/contact/">Contact</a><a href="#top">Back to top ↑</a></div>
+        <div class="footer-links"><a href="/resume/">Résumé</a><a href="/projects/">Projects</a><a href="/experience/">Experience</a><a href="/credentials/">Credentials</a><a href="/contact/">Contact</a><a href="#top">Back to top ↑</a></div>
       </footer>
     `);
   }
 
   injectShell();
   q("#year").textContent = new Date().getFullYear();
+  q("#siteHeader")?.append(q("#audioDock"));
+  if (window.EORA_BOOT) window.EORA_BOOT.dismiss();
 
   const currentPath = location.pathname;
   qa(".site-nav a").forEach(a => {
@@ -102,8 +103,6 @@
   const syncHeader = () => header.classList.toggle("is-scrolled", scrollY > 22);
   addEventListener("scroll", syncHeader, {passive:true});
   syncHeader();
-
-  let audioDesired = localStorage.getItem("eoraAudio") === "on";
 
   const reveals = qa(".reveal");
   if ("IntersectionObserver" in window && !reducedMotion) {
@@ -155,10 +154,6 @@
       lastPointerX = e.clientX;
       lastPointerY = e.clientY;
       lastPointerT = now;
-      if (audioEnabled && ctx && spatialPan) {
-        const pan = Math.max(-1, Math.min(1, (pointerX / innerWidth) * 2 - 1));
-        spatialPan.pan.setTargetAtTime(pan, ctx.currentTime, .05);
-      }
     }, {passive:true});
     qa("[data-tilt]").forEach(card => {
       card.addEventListener("pointermove", e => {
@@ -175,270 +170,157 @@
     const a = e.target.closest("a");
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     const url = new URL(a.href, location.href);
-    if (!/^https?:$/.test(url.protocol) || url.origin !== location.origin || a.target === "_blank" || (url.hash && url.pathname === location.pathname)) return;
+    if (!/^https?:$/.test(url.protocol) || url.origin !== location.origin || a.target === "_blank" || a.hasAttribute("download") || (url.hash && url.pathname === location.pathname)) return;
     e.preventDefault();
     if (audioEnabled) uiTone("navigate");
     body.classList.add("nav-exit");
     setTimeout(() => location.href = url.href, reducedMotion ? 0 : 300);
   });
 
-  let ctx, master, musicGain, uiGain, filter, lfo, chordTimer, bellTimer, shimmerTimer, spatialPan, motionGain;
+  let ctx, master;
   let audioEnabled = false;
-  let currentChord = 0;
-  let lastHoverTone = 0;
-  let lastScrollTone = 0;
-  const audioVoices = [];
-  const chordSets = [
-    [130.81,164.81,196.00,246.94],
-    [110.00,130.81,164.81,196.00],
-    [87.31,130.81,174.61,220.00],
-    [98.00,146.83,196.00,220.00],
-    [123.47,155.56,185.00,233.08]
-  ];
+  let audioUnavailable = !(window.AudioContext || window.webkitAudioContext);
+  let lastToneAt = 0;
+
+  function readSoundPreference() {
+    try { return localStorage.getItem("eoraSounds") === "on"; }
+    catch (error) { return false; }
+  }
+
+  function writeSoundPreference(value) {
+    try { localStorage.setItem("eoraSounds", value); }
+    catch (error) { /* Storage can be blocked; the choice still applies to this visit. */ }
+  }
+
+  function soundLevel() {
+    const slider = q("#volumeControl");
+    const raw = slider ? Number(slider.value) : 22;
+    const normalized = Number.isFinite(raw) ? Math.min(100, Math.max(0, raw)) / 100 : .22;
+    return Math.min(.045, Math.max(.004, normalized * .04));
+  }
+
+  function markAudioUnavailable() {
+    audioUnavailable = true;
+    audioEnabled = false;
+    const button = q("#audioToggle");
+    const label = q("#audioLabel");
+    if (!button || !label) return;
+    button.disabled = true;
+    button.setAttribute("aria-disabled", "true");
+    button.setAttribute("aria-pressed", "false");
+    button.setAttribute("aria-label", "Interaction sounds are unavailable in this browser");
+    label.textContent = "Sounds unavailable";
+  }
 
   function ensureContext() {
+    if (audioUnavailable) return null;
     if (ctx) return ctx;
     const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContext) return null;
-    ctx = new AudioContext();
-    master = ctx.createGain();
-    musicGain = ctx.createGain();
-    uiGain = ctx.createGain();
-    filter = ctx.createBiquadFilter();
-    motionGain = ctx.createGain();
-    spatialPan = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
-    master.gain.value = .0001;
-    musicGain.gain.value = .24;
-    uiGain.gain.value = .2;
-    motionGain.gain.value = .0001;
-    filter.type = "lowpass";
-    filter.frequency.value = 1050;
-    filter.Q.value = .8;
-    musicGain.connect(filter);
-    filter.connect(master);
-    if (spatialPan) {
-      uiGain.connect(spatialPan);
-      spatialPan.connect(master);
-    } else uiGain.connect(master);
-    motionGain.connect(master);
-    master.connect(ctx.destination);
-
-    lfo = ctx.createOscillator();
-    const lfoGain = ctx.createGain();
-    lfo.frequency.value = .055;
-    lfoGain.gain.value = 240;
-    lfo.connect(lfoGain);
-    lfoGain.connect(filter.frequency);
-    lfo.start();
-
-    chordSets[0].forEach((frequency,index) => {
-      const oscillator = ctx.createOscillator();
-      const gain = ctx.createGain();
-      oscillator.type = index % 2 ? "sine" : "triangle";
-      oscillator.frequency.value = frequency / 2;
-      gain.gain.value = index === 0 ? .038 : .019;
-      oscillator.connect(gain);
-      gain.connect(musicGain);
-      oscillator.start();
-      audioVoices.push({oscillator,gain});
-    });
-
-    const air = ctx.createOscillator();
-    const airGain = ctx.createGain();
-    air.type = "sine";
-    air.frequency.value = 43.65;
-    airGain.gain.value = .012;
-    air.connect(airGain);
-    airGain.connect(musicGain);
-    air.start();
-
-    scheduleChord();
-    chordTimer = setInterval(nextChord, 7600);
-    bellTimer = setInterval(playBell, 3900);
-    shimmerTimer = setInterval(playShimmer, 6100);
-    return ctx;
-  }
-
-  function scheduleChord() {
-    if (!ctx) return;
-    const set = chordSets[currentChord];
-    const now = ctx.currentTime;
-    audioVoices.forEach((voice,index) => voice.oscillator.frequency.exponentialRampToValueAtTime(set[index] / 2, now + 3));
-  }
-  function nextChord() { currentChord = (currentChord + 1) % chordSets.length; scheduleChord(); }
-
-  function playBell() {
-    if (!audioEnabled || !ctx) return;
-    const notes = chordSets[currentChord];
-    const frequency = notes[Math.floor(Math.random() * notes.length)] * 2;
-    const oscillator = ctx.createOscillator();
-    const gain = ctx.createGain();
-    oscillator.type = "sine";
-    oscillator.frequency.value = frequency;
-    gain.gain.setValueAtTime(.0001, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(.018, ctx.currentTime + .04);
-    gain.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + 2.6);
-    oscillator.connect(gain);
-    gain.connect(musicGain);
-    oscillator.start();
-    oscillator.stop(ctx.currentTime + 2.7);
-  }
-
-  function playShimmer() {
-    if (!audioEnabled || !ctx) return;
-    const now = ctx.currentTime;
-    [0, .09, .18].forEach((offset, i) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = "sine";
-      osc.frequency.value = [784, 987.77, 1174.66][i];
-      gain.gain.setValueAtTime(.0001, now + offset);
-      gain.gain.exponentialRampToValueAtTime(.009, now + offset + .015);
-      gain.gain.exponentialRampToValueAtTime(.0001, now + offset + .65);
-      osc.connect(gain); gain.connect(musicGain); osc.start(now + offset); osc.stop(now + offset + .7);
-    });
-  }
-
-  function startAudio() {
-    const activeContext = ensureContext();
-    if (!activeContext) return;
-    activeContext.resume();
-    audioDesired = true;
-    audioEnabled = true;
-    const volume = Number(q("#volumeControl").value) / 100;
-    master.gain.cancelScheduledValues(activeContext.currentTime);
-    master.gain.setValueAtTime(Math.max(master.gain.value,.0001), activeContext.currentTime);
-    master.gain.exponentialRampToValueAtTime(Math.max(volume * .48,.0001), activeContext.currentTime + .8);
-    localStorage.setItem("eoraAudio","on");
-    syncAudioUI();
-    uiTone("confirm");
-  }
-
-  function stopAudio() {
-    audioDesired = false;
-    audioEnabled = false;
-    if (ctx) {
-      master.gain.cancelScheduledValues(ctx.currentTime);
-      master.gain.setValueAtTime(Math.max(master.gain.value,.0001), ctx.currentTime);
-      master.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + .35);
+    if (!AudioContext) {
+      markAudioUnavailable();
+      return null;
     }
-    localStorage.setItem("eoraAudio","off");
-    syncAudioUI();
+    try {
+      ctx = new AudioContext();
+      master = ctx.createGain();
+      master.gain.value = soundLevel();
+      master.connect(ctx.destination);
+      return ctx;
+    } catch (error) {
+      markAudioUnavailable();
+      return null;
+    }
   }
 
   function syncAudioUI() {
     const button = q("#audioToggle");
     const label = q("#audioLabel");
+    if (!button || !label || audioUnavailable) return;
     button.setAttribute("aria-pressed", String(audioEnabled));
-    button.setAttribute("aria-label", audioEnabled ? "Mute ambient music and interface sounds" : "Enable ambient music and interface sounds");
-    label.textContent = audioEnabled ? "Audio on" : (audioDesired ? "Audio ready" : "Audio off");
+    button.setAttribute("aria-label", audioEnabled ? "Turn off interaction sounds" : "Turn on interaction sounds");
+    label.textContent = audioEnabled ? "Sounds on" : "Sounds off";
   }
 
-  function uiTone(type="click", panOverride=null) {
-    if (!audioEnabled) return;
+  function startAudio() {
+    if (audioUnavailable) return;
+    audioEnabled = true;
+    writeSoundPreference("on");
+    syncAudioUI();
+    uiTone("confirm");
+  }
+
+  function stopAudio() {
+    audioEnabled = false;
+    writeSoundPreference("off");
+    if (ctx && master) {
+      try {
+        master.gain.cancelScheduledValues(ctx.currentTime);
+        master.gain.setValueAtTime(Math.max(master.gain.value, .0001), ctx.currentTime);
+        master.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + .05);
+      } catch (error) { /* Ignore a closed audio graph. */ }
+    }
+    syncAudioUI();
+  }
+
+  function uiTone(type="click") {
+    if (!audioEnabled || audioUnavailable) return;
+    if (type === "hover" || type === "scroll") return;
+    const nowMs = performance.now();
+    if (nowMs - lastToneAt < 90) return;
     const activeContext = ensureContext();
     if (!activeContext) return;
-    const oscillator = activeContext.createOscillator();
-    const gain = activeContext.createGain();
-    const panNode = activeContext.createStereoPanner ? activeContext.createStereoPanner() : null;
-    oscillator.type = type === "hover" ? "triangle" : "sine";
-    const frequencyMap = {navigate:420,hover:760,click:620,confirm:880,scroll:300,menu:540};
-    oscillator.frequency.value = frequencyMap[type] || 620;
-    if (type === "navigate") oscillator.frequency.exponentialRampToValueAtTime(840, activeContext.currentTime + .14);
-    if (type === "confirm") oscillator.frequency.exponentialRampToValueAtTime(1174.66, activeContext.currentTime + .16);
-    if (type === "scroll") oscillator.frequency.exponentialRampToValueAtTime(360, activeContext.currentTime + .08);
-    const peak = type === "hover" ? .018 : type === "scroll" ? .012 : .035;
-    const duration = type === "navigate" || type === "confirm" ? .2 : type === "scroll" ? .12 : .09;
-    gain.gain.setValueAtTime(.0001, activeContext.currentTime);
-    gain.gain.exponentialRampToValueAtTime(peak, activeContext.currentTime + .012);
-    gain.gain.exponentialRampToValueAtTime(.0001, activeContext.currentTime + duration);
-    oscillator.connect(gain);
-    if (panNode) {
-      const pan = panOverride == null ? Math.max(-1, Math.min(1, (pointerX / innerWidth) * 2 - 1)) : panOverride;
-      panNode.pan.value = pan;
-      gain.connect(panNode);
-      panNode.connect(uiGain);
-    } else gain.connect(uiGain);
-    oscillator.start();
-    oscillator.stop(activeContext.currentTime + duration + .05);
+    if (activeContext.state === "suspended") activeContext.resume().catch(() => {});
+    lastToneAt = nowMs;
+    try {
+      const oscillator = activeContext.createOscillator();
+      const gain = activeContext.createGain();
+      const frequencyMap = {navigate:494, click:392, confirm:523, menu:440};
+      oscillator.type = "sine";
+      oscillator.frequency.value = frequencyMap[type] || 392;
+      const now = activeContext.currentTime;
+      const peak = soundLevel();
+      gain.gain.setValueAtTime(.0001, now);
+      gain.gain.exponentialRampToValueAtTime(peak, now + .012);
+      gain.gain.exponentialRampToValueAtTime(.0001, now + .08);
+      oscillator.connect(gain);
+      gain.connect(master);
+      oscillator.start(now);
+      oscillator.stop(now + .1);
+    } catch (error) {
+      markAudioUnavailable();
+    }
   }
 
-  q("#audioToggle").addEventListener("click", () => audioEnabled ? stopAudio() : startAudio());
-  q("#volumeControl").addEventListener("input", e => {
-    if (!ctx) return;
-    const volume = Number(e.target.value) / 100;
-    master.gain.setTargetAtTime(audioEnabled ? Math.max(volume * .48,.0001) : .0001, ctx.currentTime, .12);
-  });
+  audioEnabled = readSoundPreference();
+  if (audioUnavailable) markAudioUnavailable();
+  else syncAudioUI();
 
-  document.addEventListener("pointerover", e => {
-    if (!audioEnabled) return;
-    const target = e.target.closest(".button,.page-link,.card,.header-chip,.site-nav a,.brand,.audio-button,.voice-button,.shortcut-button");
-    if (!target || target.contains(e.relatedTarget)) return;
-    const now = performance.now();
-    if (now - lastHoverTone < 55) return;
-    lastHoverTone = now;
-    const rect = target.getBoundingClientRect();
-    const pan = Math.max(-1, Math.min(1, ((rect.left + rect.width / 2) / innerWidth) * 2 - 1));
-    uiTone("hover", pan);
+  q("#audioToggle").addEventListener("click", () => audioEnabled ? stopAudio() : startAudio());
+  q("#volumeControl").addEventListener("input", () => {
+    try { localStorage.setItem("eoraVolume", q("#volumeControl").value); }
+    catch (error) { /* Preference cannot be stored. */ }
+    if (!ctx || !master) return;
+    master.gain.setTargetAtTime(audioEnabled ? soundLevel() : .0001, ctx.currentTime, .05);
   });
 
   document.addEventListener("click", e => {
-    if (!audioEnabled) return;
-    if (e.target.closest("button,.button,.site-nav a,.header-chip")) uiTone("click");
+    if (!audioEnabled || e.target.closest("#audioToggle, a")) return;
+    if (e.target.closest("button")) uiTone("click");
   });
-
-  menu.addEventListener("click", () => { if (audioEnabled) uiTone("menu"); });
-
-  let lastScrollY = scrollY;
-  addEventListener("scroll", () => {
-    if (!audioEnabled || !ctx) return;
-    const now = performance.now();
-    const delta = Math.abs(scrollY - lastScrollY);
-    lastScrollY = scrollY;
-    if (delta > 18 && now - lastScrollTone > 145) {
-      lastScrollTone = now;
-      const directionPan = scrollY % 2 ? .18 : -.18;
-      uiTone("scroll", directionPan);
-    }
-    if (motionGain) motionGain.gain.setTargetAtTime(Math.min(.018, delta / 7000), ctx.currentTime, .04);
-  }, {passive:true});
-
-  function speak(text) {
-    if (!("speechSynthesis" in window)) return;
-    speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = .94;
-    utterance.pitch = .9;
-    utterance.volume = .8;
-    const available = speechSynthesis.getVoices();
-    utterance.voice = available.find(v => /English.*(US|United States)/i.test(`${v.name} ${v.lang}`)) || available.find(v => v.lang.startsWith("en")) || null;
-    speechSynthesis.speak(utterance);
-  }
-  q("#voiceGuide").addEventListener("click", () => speak(`${page.title}. ${page.voice}`));
 
   const shortcutPanel = q("#shortcutPanel");
   q("#shortcutButton").addEventListener("click", () => shortcutPanel.classList.toggle("is-open"));
   addEventListener("keydown", e => {
-    if (e.target.matches("input,textarea,select,[contenteditable=true]")) return;
-    if (e.key.toLowerCase() === "m") audioEnabled ? stopAudio() : startAudio();
-    if (e.key.toLowerCase() === "g") speak(`${page.title}. ${page.voice}`);
-    if (e.key.toLowerCase() === "h") location.href = "/";
+    const typing = e.target.closest && e.target.closest("input, textarea, select, [contenteditable=true]");
+    if (typing) return;
+    if ((e.key === "m" || e.key === "M") && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      if (!audioUnavailable) audioEnabled ? stopAudio() : startAudio();
+    }
+    if (e.key === "h" || e.key === "H") location.href = "/";
     if (e.key === "?") shortcutPanel.classList.toggle("is-open");
   });
 
-  if (audioDesired) {
-    const resumeSavedAudio = event => {
-      if (event.target && event.target.closest && event.target.closest("#audioToggle")) return;
-      startAudio();
-      removeEventListener("pointerdown", resumeSavedAudio);
-      removeEventListener("keydown", resumeSavedAudio);
-    };
-    addEventListener("pointerdown", resumeSavedAudio);
-    addEventListener("keydown", resumeSavedAudio);
-  }
-  syncAudioUI();
-
-  window.EORA_AUDIO = { tone: uiTone, enabled: () => audioEnabled };
+  window.EORA_AUDIO = { tone: uiTone, enabled: () => audioEnabled && !audioUnavailable };
 
   if (!reducedMotion) {
     const canvas = q("#networkCanvas");
@@ -508,7 +390,7 @@
   }[c]));
 
   const pathLabels = {
-    recruiter:"Recruiter", projects:"Projects", experience:"Experience",
+    recruiter:"Recruiter", projects:"Projects", experience:"Experience", resume:"Résumé",
     credentials:"Credentials", education:"Education",
     capabilities:"Capabilities", about:"About", contact:"Contact"
   };
@@ -642,6 +524,7 @@
       return;
     }
     body.classList.add("spa-leave");
+    if (window.EORA_AUDIO?.enabled?.()) window.EORA_AUDIO.tone("navigate");
     try {
       const key = await pageKeyFor(url);
       if (!reducedMotion) await new Promise(resolve => setTimeout(resolve, 180));
@@ -715,6 +598,7 @@
       id: "career", label: "Career", glyph: "▣",
       items: [
         ["Experience", "/experience/", "Healthcare, field, and public-sector operations"],
+        ["Résumé", "/resume/", "Accessible résumé and PDF"],
         ["Recruiter briefing", "/recruiter/", "A concise technical profile"],
         ["Capabilities", "/capabilities/", "Systems and security focus areas"]
       ]
@@ -755,7 +639,7 @@
   function currentGroup() {
     const path = location.pathname;
     if (path.startsWith("/projects/")) return groups.find(group => group.id === "projects");
-    if (path.startsWith("/experience/") || path.startsWith("/recruiter/") || path.startsWith("/capabilities/")) return groups.find(group => group.id === "career");
+    if (path.startsWith("/experience/") || path.startsWith("/resume/") || path.startsWith("/recruiter/") || path.startsWith("/capabilities/")) return groups.find(group => group.id === "career");
     if (path.startsWith("/credentials/") || path.startsWith("/education/")) return groups.find(group => group.id === "proof");
     if (path.startsWith("/about/") || path.startsWith("/contact/")) return groups.find(group => group.id === "about");
     return groups[0];
@@ -827,10 +711,6 @@
 (() => {
   "use strict";
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const body = document.body;
-  let lastMoveTone = 0;
-  let lastX = innerWidth / 2;
-  let lastY = innerHeight / 2;
 
   function ripple(event) {
     if (reducedMotion) return;
@@ -851,21 +731,10 @@
 
   document.addEventListener("pointermove", event => {
     const target = event.target.closest("a,button,.xmb-item,.card,.page-link");
-    const dx = event.clientX - lastX;
-    const dy = event.clientY - lastY;
-    lastX = event.clientX;
-    lastY = event.clientY;
-
     if (target) {
       const rect = target.getBoundingClientRect();
       target.style.setProperty("--pointer-x", `${((event.clientX - rect.left) / target.offsetWidth) * 100}%`);
       target.style.setProperty("--pointer-y", `${((event.clientY - rect.top) / target.offsetHeight) * 100}%`);
-      const now = performance.now();
-      if (window.EORA_AUDIO?.enabled?.() && now - lastMoveTone > 165 && Math.hypot(dx, dy) > 2) {
-        lastMoveTone = now;
-        const pan = Math.max(-1, Math.min(1, ((rect.left + rect.width / 2) / innerWidth) * 2 - 1));
-        window.EORA_AUDIO.tone("hover", pan);
-      }
     }
 
     const rail = document.querySelector(".xmb-shell");

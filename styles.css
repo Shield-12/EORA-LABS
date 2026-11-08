@@ -822,3 +822,70 @@ body.editorial-theme .audio-button[aria-pressed=true]{background:#111;color:#fff
 html,body{background:#fff;color:#111}
 body.is-loading{overflow:auto}
 .page-loader{display:none!important}
+
+/* Opening screen: visual only. It never locks scroll, takes focus, or covers the page when JavaScript does not run. */
+.eora-loader{position:fixed;inset:0;z-index:30000;display:grid;place-items:center;padding:1.5rem;background:#fff;color:#111;pointer-events:none;opacity:1;transition:opacity .16s linear}
+html.eora-reduce .eora-loader{inset:0 auto auto 0;display:block;height:auto;padding:.7rem 1rem;border-bottom:1px solid #111;transition:none}
+html:not(.eora-booting) .eora-loader{opacity:0}
+.eora-loader-card{width:min(28rem,100%);text-align:center}
+html.eora-reduce .eora-loader-card{display:flex;gap:.8rem;align-items:baseline;width:auto;text-align:left}
+.eora-loader-kicker,.eora-loader-note{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.eora-loader-title{margin:.35rem 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,6vw,3.4rem);font-weight:700;letter-spacing:.04em;line-height:1}
+.eora-loader-rule{display:block;width:7rem;height:2px;margin:.9rem auto 0;background:#111;transform-origin:left}
+html.eora-booting:not(.eora-reduce) .eora-loader-rule{animation:eoraRule .45s ease-out both}
+html.eora-reduce .eora-loader-rule{width:2.5rem;height:1px;margin:0}
+.eora-loader-note{margin-top:.75rem;color:#555}
+html.eora-reduce .eora-loader-note{margin:0}
+@keyframes eoraRule{from{transform:scaleX(.15)}to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){
+  .eora-loader,.eora-loader-rule{animation:none!important;transition:none!important}
+}
+
+body.editorial-theme .site-header{flex-wrap:wrap;align-items:center}
+body.editorial-theme .audio-dock{position:static;margin-left:auto;box-shadow:none}
+body.editorial-theme .audio-label{display:inline}
+body.editorial-theme .audio-hint,
+body.editorial-theme .shortcut-panel{top:5.6rem;right:1rem;bottom:auto}
+body.editorial-theme .audio-button:focus-visible,
+body.editorial-theme .shortcut-button:focus-visible{outline:2px solid #111;outline-offset:2px}
+body.editorial-theme .resume-sheet article,
+body.editorial-theme .resume-qualifications div,
+body.editorial-theme .resume-role{break-inside:avoid}
+body.editorial-theme .resume-sheet h2,
+body.editorial-theme .resume-sheet h3{break-after:avoid}
+@media(max-width:760px){
+  body.editorial-theme .audio-dock{width:auto;margin:.55rem 0 0 auto}
+  body.editorial-theme .volume-wrap{display:none}
+}
+body.editorial-theme .resume-note{margin:0 0 1.2rem;padding:.9rem 1rem;border:1px solid #111;background:#f7f7f7;color:#222;font-size:.92rem}
+body.editorial-theme .resume-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin:0 0 1.4rem}
+body.editorial-theme .resume-identity{margin:0 0 1.2rem}
+body.editorial-theme .resume-identity h2{margin:0;border:0;padding:0;font-size:clamp(2rem,4vw,2.8rem)}
+body.editorial-theme .resume-identity p{margin:.35rem 0 0;color:#444}
+body.editorial-theme .resume-sheet h2{margin:1.8rem 0 .7rem;padding-top:.85rem;border-top:1px solid #111;font-family:Georgia,"Times New Roman",serif;font-size:1.55rem;font-weight:700}
+body.editorial-theme .resume-role{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin:1.15rem 0 .25rem}
+body.editorial-theme .resume-role h3{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:1.15rem}
+body.editorial-theme .resume-role time{color:#333;font-family:Arial,Helvetica,sans-serif;font-size:.82rem;font-weight:700;white-space:nowrap}
+body.editorial-theme .resume-meta{margin:0 0 .45rem;color:#555;font-size:.84rem}
+body.editorial-theme .resume-list{display:grid;gap:.45rem;margin:.2rem 0 0;padding-left:1.15rem}
+body.editorial-theme .resume-list li{color:#333}
+body.editorial-theme .resume-qualifications{display:grid;gap:.75rem;margin:0}
+body.editorial-theme .resume-qualifications dt{font-weight:700}
+body.editorial-theme .resume-qualifications dd{margin:.15rem 0 0;color:#333}
+@media(max-width:760px){
+  body.editorial-theme .resume-role{flex-direction:column;align-items:flex-start;gap:.15rem}
+  body.editorial-theme .resume-role time{white-space:normal}
+}
+@media print{
+  .site-header,.site-nav,.audio-dock,.audio-hint,.shortcut-panel,.site-footer,.skip-link,.eora-loader,#xmbShell,.page-hero,.resume-actions,#networkCanvas,.grid-field,.noise-field,.scanline,.cursor-glow{display:none!important}
+  body,.resume-sheet{background:#fff!important;color:#000!important}
+  .resume-sheet{padding-top:0}
+  body.editorial-theme .resume-role{display:block}
+  body.editorial-theme .resume-role h3,
+  body.editorial-theme .resume-role time{display:block;white-space:normal}
+  body.editorial-theme .resume-sheet article{break-inside:auto}
+  body.editorial-theme .resume-sheet h2,
+  body.editorial-theme .resume-sheet h3{break-inside:avoid;break-after:avoid}
+  a{color:#000;text-decoration:none}
+  @page{margin:14mm}
+}

@@ -11,7 +11,7 @@
       lede: "A simple record of systems work, security practice, infrastructure study, and the professional experience behind it.",
       voice: "Welcome to Eora Labs. This portfolio presents Langston Brown's professional experience, certifications, technical projects, and operating philosophy in systems and security.",
       compact: false,
-      actions: [["/recruiter/","Recruiter overview","primary"],["/projects/","Explore the work","secondary"],["/contact/","Contact Langston","secondary"]],
+      actions: [["/recruiter/","Recruiter overview","primary"],["/resume/","Résumé","secondary"],["/projects/","Explore the work","secondary"],["/contact/","Contact Langston","secondary"]],
       content: `
         <section class="section band reference-home">
           <div class="inner reference-home-grid">
@@ -23,6 +23,7 @@
               <p>Explore the sections below to review the work, the experience behind it, and the evidence of continued preparation.</p>
               <div class="reference-contact">
                 <a class="button primary small" href="/recruiter/">Recruiter briefing</a>
+                <a class="button secondary small" href="/resume/">Résumé</a>
                 <a class="button secondary small" href="/projects/">Technical projects</a>
                 <a class="button secondary small" href="/contact/">Contact</a>
               </div>
@@ -33,6 +34,7 @@
               <p>Systems · Security · Infrastructure</p>
               <dl>
                 <div><dt>Based in</dt><dd>Memphis, Tennessee</dd></div>
+                <div><dt>Current role</dt><dd>IT Support Technician, Lakeside Behavioral Health</dd></div>
                 <div><dt>Current direction</dt><dd>Systems · IAM · Endpoint</dd></div>
                 <div><dt>Flagship build</dt><dd>Eora Enterprise Lab</dd></div>
               </dl>
@@ -46,7 +48,7 @@
               <p>Each section keeps the presentation direct: a short overview first, followed by the supporting detail.</p>
             </header>
             <div class="cards reference-cards">
-              <article class="card reveal"><p class="card-number">01</p><h3>Experience</h3><p>Healthcare IT, field engineering, and county-government support.</p><div class="card-actions"><a class="button secondary small" href="/experience/">View experience</a></div></article>
+              <article class="card reveal"><p class="card-number">01</p><h3>Experience</h3><p>Current healthcare IT support, county-government service, and field engineering.</p><div class="card-actions"><a class="button secondary small" href="/experience/">View experience</a></div></article>
               <article class="card reveal"><p class="card-number">02</p><h3>Projects</h3><p>Infrastructure, identity, networking, wireless research, and operations case studies.</p><div class="card-actions"><a class="button secondary small" href="/projects/">View projects</a></div></article>
               <article class="card reveal"><p class="card-number">03</p><h3>Credentials</h3><p>Certifications, education, and the milestones that support the technical direction.</p><div class="card-actions"><a class="button secondary small" href="/credentials/">View credentials</a></div></article>
               <article class="card reveal"><p class="card-number">04</p><h3>Capabilities</h3><p>Systems, identity, endpoints, networks, documentation, and security-minded administration.</p><div class="card-actions"><a class="button secondary small" href="/capabilities/">View capabilities</a></div></article>
@@ -76,7 +78,7 @@
           <div class="callout"><strong>Career direction</strong><p>The next step is not another generic support role. The intended move is toward systems administration, identity and access administration, endpoint administration, healthcare infrastructure, or defensive security operations.</p></div>
           <h3>Evidence available on this site</h3><p>The portfolio contains dedicated pages for each employer, project, credential, and education milestone so a reviewer can move from claims to supporting context.</p>
         `,`
-          <span class="status current">Available</span><h3>Professional snapshot</h3><dl><div><dt>Location</dt><dd>Memphis, Tennessee</dd></div><div><dt>Education</dt><dd>B.B.A., Management Information Systems</dd></div><div><dt>Primary direction</dt><dd>Systems · IAM · Endpoint · Security</dd></div><div><dt>Preferred environment</dt><dd>Healthcare or enterprise IT</dd></div><div><dt>Flagship project</dt><dd>Eora Enterprise Lab</dd></div></dl>
+          <span class="status current">Available</span><h3>Professional snapshot</h3><dl><div><dt>Location</dt><dd>Memphis, Tennessee</dd></div><div><dt>Current role</dt><dd>IT Support Technician, Lakeside Behavioral Health (UHS), since September 2026</dd></div><div><dt>Education</dt><dd>B.B.A., Management Information Systems, conferred May 2026</dd></div><div><dt>Primary direction</dt><dd>Systems · IAM · Endpoint · Security</dd></div><div><dt>Preferred environment</dt><dd>Healthcare or enterprise IT</dd></div><div><dt>Flagship project</dt><dd>Eora Enterprise Lab</dd></div><div><dt>Résumé</dt><dd><a href="/resume/">Accessible résumé</a></dd></div></dl>
           <div class="card-actions"><a class="button primary small" href="mailto:langston.brown03@gmail.com">Email Langston</a><a class="button secondary small" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/k0326/">LinkedIn</a></div>
         `)}
         ${nextLinks([["/projects/","Technical projects","See architecture and implementation work"],["/credentials/","Credentials","Review certification status and education"]])}
@@ -87,11 +89,12 @@
       title: "Professional Experience",
       eyebrow: "Seven-plus years in information technology",
       headline: "Built from the <em>operational floor up.</em>",
-      lede: "The experience record spans clinical support, field engineering, enterprise service delivery, identity incidents, endpoint operations, and after-hours continuity.",
-      voice: "The experience section covers three primary roles: Customer Service Technician Two with Shelby County Government, IT Field Engineer with eResources, and IT Technician with Alliance Healthcare Services.",
-      actions: [["/recruiter/","Recruiter summary","primary"],["/projects/","Technical projects","secondary"]],
+      lede: "The experience record includes current on-site support at Lakeside Behavioral Health, earlier clinical support, field engineering, enterprise service delivery, identity work, endpoint operations, and after-hours continuity.",
+      voice: "The experience section covers four IT roles: IT Support Technician at Lakeside Behavioral Health, Customer Support Technician II with Shelby County Government, IT Field Engineer with eResources, and IT Technician with Alliance Healthcare Services.",
+      actions: [["/resume/","Résumé","primary"],["/recruiter/","Recruiter summary","secondary"],["/projects/","Technical projects","secondary"]],
       content: `${heroCards([
-        {title:"Shelby County Government",text:"Customer Service Technician II supporting enterprise users, access incidents, Microsoft 365, endpoints, mobile devices, printers, dispatch, documentation, and on-call operations.",tags:["2024–2026","Public sector","Enterprise support"],href:"/experience/shelby-county-government/",wide:true},
+        {title:"Lakeside Behavioral Health (UHS)",text:"IT Support Technician providing on-site Tier I/II support for a HIPAA-regulated, 400-employee inpatient behavioral health campus.",tags:["Sep 2026–present","Healthcare IT","Current"],href:"/experience/lakeside-behavioral-health/",status:"Current",statusClass:"status current",wide:true},
+        {title:"Shelby County Government",text:"Customer Support Technician II supporting enterprise users, access incidents, Microsoft 365, endpoints, mobile devices, printers, dispatch, documentation, and an every-other-month on-call rotation.",tags:["Apr 2024–May 2026","Public sector","Enterprise support"],href:"/experience/shelby-county-government/",wide:true},
         {title:"eResources LLC",text:"IT Field Engineer deploying and supporting Windows environments while troubleshooting DNS, VPN, firewall, application, and network connectivity issues.",tags:["2023","Field engineering","Customer environments"],href:"/experience/eresources/"},
         {title:"Alliance Healthcare Services",text:"IT Technician supporting HIPAA-regulated clinical operations, user access, endpoints, Citrix thin clients, mobile devices, printers, applications, and after-hours incidents.",tags:["2018–2023","Healthcare IT","Clinical continuity"],href:"/experience/alliance-healthcare-services/",wide:true}
       ])}
@@ -100,18 +103,18 @@
 
     "experience-scg": {
       title: "Shelby County Government",
-      eyebrow: "Customer Service Technician II · 2024–2026",
+      eyebrow: "Customer Support Technician II · 2024–2026",
       headline: "Enterprise support inside a <em>public-sector operating environment.</em>",
-      lede: "The role combined service-desk intake, identity and access troubleshooting, endpoint support, mobile-device issues, printer incidents, dispatch, escalation, documentation, and scheduled on-call coverage.",
-      voice: "At Shelby County Government, Langston supported enterprise users across Active Directory, Microsoft 365, endpoints, mobile devices, printers, account access, dispatch, documentation, and on-call operations.",
+      lede: "The role combined service-desk intake, identity and access troubleshooting, endpoint support, mobile-device issues, printer incidents, dispatch, escalation, documentation, and an every-other-month on-call rotation.",
+      voice: "At Shelby County Government, Langston worked as a Customer Support Technician II, supporting enterprise users across Active Directory, Microsoft 365, endpoints, mobile devices, printers, account access, dispatch, documentation, and an every-other-month on-call rotation.",
       actions: [["/experience/","All experience","primary"],["/projects/infrastructure-operations/","Related case study","secondary"]],
       content: `${detail(`
         <h2>Role context</h2><p>County government technology support requires balancing user urgency, policy, access control, multiple departments, legacy dependencies, escalation boundaries, and continuity expectations. The work was not merely device repair; it was operational coordination across a broad enterprise user base.</p>
-        <h3>Responsibilities and exposure</h3><ul><li>Handled service requests and incidents involving account access, password resets, lockouts, Microsoft 365, Windows endpoints, mobile devices, printers, and peripheral equipment.</li><li>Worked with Active Directory account states and identity-related troubleshooting within assigned support boundaries.</li><li>Dispatched or escalated incidents requiring higher-tier infrastructure, networking, application, or field intervention.</li><li>Participated in scheduled on-call coverage and supported continuity outside standard business hours.</li><li>Created and used technical documentation to improve repeatability and handoff quality.</li></ul>
+        <h3>Responsibilities and exposure</h3><ul><li>Administered Windows Server, Active Directory, and Microsoft 365 services supporting 5,000+ users, including endpoint asset assignment, organizational unit structure, and license allocation across county departments.</li><li>Provisioned and enrolled endpoints into device management and MDM platforms, and checked compliance configuration and organizational unit placement on deployment or domain rejoin.</li><li>Managed Microsoft 365 license assignment and harvesting, Exchange Online mailbox provisioning, distribution list management, and MFA configuration.</li><li>Oversaw endpoint patch cycles and routine maintenance across desktops, laptops, and servers.</li><li>Troubleshot network connectivity failures at the switch level with Orion SolarWinds monitoring, locating devices by MAC address.</li><li>Authored PowerShell automation for enterprise software deployment, including a script to silently install Oracle Smart View with required runtime dependencies.</li><li>Handled service requests involving account access, password resets, lockouts, Windows endpoints, mobile devices, printers, and peripheral equipment, and provided Tier II/III guidance to end users and junior staff.</li><li>Participated in an on-call rotation every other month and documented procedures for handoff and audit readiness.</li></ul>
         <h3>Enterprise lesson</h3><p>A mature service desk is an observability layer for the organization. Repeated password lockouts, printer failures, connectivity tickets, or device problems can reveal deeper weaknesses in configuration, identity design, lifecycle management, documentation, or ownership.</p>
-        <div class="callout"><strong>Professional framing</strong><p>This role demonstrates enterprise service delivery and operational discipline. It should not be misrepresented as direct ownership of county servers or architecture.</p></div>
-      `,`<h3>Environment profile</h3><dl><div><dt>Sector</dt><dd>County government</dd></div><div><dt>Role</dt><dd>Customer Service Technician II</dd></div><div><dt>Dates</dt><dd>April 2024 – May 2026</dd></div><div><dt>Core domains</dt><dd>Identity support, M365, endpoints, mobile, printers, dispatch</dd></div><div><dt>Operational element</dt><dd>Scheduled on-call coverage</dd></div></dl>`)}
-      ${nextLinks([["/experience/eresources/","Next role","eResources field engineering"],["/projects/infrastructure-operations/","Related project","Enterprise infrastructure operations case study"]])}`
+        <div class="callout"><strong>Scope</strong><p>The role included administration of Windows Server, Active Directory, and Microsoft 365 for a 5,000+ user environment, including endpoint assignment, organizational unit structure, license allocation, and patch cycles.</p></div>
+      `,`<h3>Environment profile</h3><dl><div><dt>Sector</dt><dd>County government</dd></div><div><dt>Role</dt><dd>Customer Support Technician II</dd></div><div><dt>Dates</dt><dd>April 2024 – May 2026</dd></div><div><dt>Schedule</dt><dd>40 hours per week</dd></div><div><dt>Core domains</dt><dd>Identity support, M365, endpoints, MDM, patching, SolarWinds</dd></div><div><dt>Operational element</dt><dd>On-call rotation every other month</dd></div></dl>`)}
+      ${nextLinks([["/experience/lakeside-behavioral-health/","Later role","Lakeside Behavioral Health"],["/experience/eresources/","Earlier role","eResources field engineering"]])}`
     },
 
     "experience-eresources": {
@@ -125,7 +128,7 @@
         <h2>Role context</h2><p>Field engineering compresses the troubleshooting cycle. The engineer arrives in an unfamiliar environment, gathers incomplete information, identifies dependencies, communicates with customer personnel, and must distinguish endpoint symptoms from network, application, identity, or infrastructure causes.</p>
         <h3>Responsibilities and exposure</h3><ul><li>Deployed and supported Windows endpoints and server systems in customer environments.</li><li>Troubleshot DNS resolution, VPN access, firewall behavior, application failures, and general network connectivity.</li><li>Supported clinic and office technology rollouts where sequencing, readiness, and communication mattered as much as installation.</li><li>Worked across different customer configurations rather than relying on one standardized internal image.</li></ul>
         <h3>Professional lesson</h3><p>Successful field work depends on disciplined discovery: establish the scope, confirm the physical and logical path, identify what changed, test from the lowest layer upward, and document the result for the next technician.</p>
-      `,`<h3>Environment profile</h3><dl><div><dt>Sector</dt><dd>Managed/customer IT services</dd></div><div><dt>Role</dt><dd>IT Field Engineer</dd></div><div><dt>Dates</dt><dd>April 2023 – August 2023</dd></div><div><dt>Core domains</dt><dd>Deployment, Windows, DNS, VPN, firewall, applications, connectivity</dd></div></dl>`)}
+      `,`<h3>Environment profile</h3><dl><div><dt>Sector</dt><dd>Managed/customer IT services</dd></div><div><dt>Organization</dt><dd>eResources, LLC</dd></div><div><dt>Role</dt><dd>IT Field Engineer</dd></div><div><dt>Dates</dt><dd>April 2023 – August 2023</dd></div><div><dt>Schedule</dt><dd>40 hours per week; travel across the Memphis metro area</dd></div><div><dt>Core domains</dt><dd>Deployment, Windows, DNS, VPN, firewall, applications, connectivity</dd></div></dl>`)}
       ${nextLinks([["/experience/alliance-healthcare-services/","Previous role","Alliance Healthcare Services"],["/projects/healthcare-identity/","Related project","Healthcare identity design"]])}`
     },
 
@@ -140,7 +143,7 @@
         <h2>Role context</h2><p>Healthcare support is inseparable from workflow continuity. A login failure can delay chart access. A printer outage can disrupt documentation. A thin-client issue can interrupt a clinician's session. The technician must restore service while respecting privacy, authorization, escalation, and the practical realities of patient-facing operations.</p>
         <h3>Responsibilities and exposure</h3><ul><li>Supported Windows endpoints, Citrix thin clients, mobile devices, printers, and clinical applications.</li><li>Assisted users with access and authentication problems in HIPAA-regulated environments.</li><li>Responded to after-hours incidents and worked independently when immediate support was required.</li><li>Troubleshot symptoms spanning devices, applications, connectivity, and user access.</li><li>Communicated with clinical and administrative personnel whose technical issue was often blocking a business or care process.</li></ul>
         <h3>Professional lesson</h3><p>The correct technical resolution is not enough if it ignores clinical urgency, privacy, communication, or a safe escalation path. Healthcare IT requires both systems thinking and respect for operational consequences.</p>
-      `,`<h3>Environment profile</h3><dl><div><dt>Sector</dt><dd>Behavioral healthcare</dd></div><div><dt>Role</dt><dd>IT Technician</dd></div><div><dt>Dates</dt><dd>November 2018 – April 2023</dd></div><div><dt>Core domains</dt><dd>Clinical applications, Citrix, access, endpoints, mobile, printers</dd></div><div><dt>Compliance context</dt><dd>HIPAA-regulated operations</dd></div></dl>`)}
+      `,`<h3>Environment profile</h3><dl><div><dt>Sector</dt><dd>Behavioral healthcare</dd></div><div><dt>Role</dt><dd>IT Technician</dd></div><div><dt>Dates</dt><dd>November 2018 – April 2023</dd></div><div><dt>Schedule</dt><dd>40 hours per week; on-call one week every two weeks</dd></div><div><dt>Core domains</dt><dd>Clinical applications, Citrix, access, endpoints, mobile, printers</dd></div><div><dt>Compliance context</dt><dd>HIPAA-regulated operations</dd></div></dl>`)}
       ${nextLinks([["/projects/healthcare-identity/","Related architecture","Healthcare identity design"],["/education/southwest-tennessee/","Education milestone","Associate of Science"]])}`
     },
 
@@ -288,9 +291,9 @@
         {title:"CompTIA Security+",text:"SY0-701 certification earned November 17, 2024. Current through November 17, 2027.",tags:["SY0-701","Security foundations","Current"],href:"/credentials/comptia-security/",status:"Current",statusClass:"status current"},
         {title:"CompTIA Network+",text:"Earned December 15, 2023. Current certification cycle through December 15, 2026.",tags:["N10-008","Networking","Current"],href:"/credentials/comptia-network/",status:"Current",statusClass:"status current"},
         {title:"ISC2 Certified in Cybersecurity",text:"Certified since 2024. Current cycle through January 31, 2027.",tags:["CC","Cybersecurity","Current"],href:"/credentials/isc2-cc/",status:"Current",statusClass:"status current"},
-        {title:"CompTIA A+",text:"Earned April 20, 2018. The certificate supplied reflects a prior cycle ending April 20, 2021.",tags:["Endpoint foundations","Prior cycle"],href:"/credentials/comptia-a/",status:"Prior cycle",statusClass:"status prior"},
+        {title:"CompTIA A+",text:"Earned April 20, 2018. Historical certification. Expired April 20, 2023.",tags:["Endpoint foundations","Historical"],href:"/credentials/comptia-a/",status:"Expired",statusClass:"status prior"},
         {title:"CompTIA IT Fundamentals+",text:"Earned August 16, 2017 as the first formal technology credential in the progression.",tags:["IT foundations","Earned"],href:"/credentials/comptia-itf/",status:"Earned",statusClass:"status earned"},
-        {title:"B.B.A. in Management Information Systems",text:"University of Memphis, completed in 2026.",tags:["Business","Information systems","2026"],href:"/education/university-of-memphis/",wide:true},
+        {title:"B.B.A. in Management Information Systems",text:"University of Memphis, conferred May 2026. GPA 3.28. SACSCOC accredited.",tags:["Business","Information systems","May 2026"],href:"/education/university-of-memphis/",wide:true},
         {title:"Associate of Science",text:"Southwest Tennessee Community College, awarded August 11, 2022.",tags:["Associate degree","2022"],href:"/education/southwest-tennessee/"}
       ])}`
     },
@@ -327,12 +330,12 @@
 
     "credential-a": {
       title: "CompTIA A+",
-      eyebrow: "Foundational credential · Prior cycle",
+      eyebrow: "Historical credential · Expired",
       headline: "The endpoint foundation that started <em>before the first full-time IT role.</em>",
-      lede: "Earned April 20, 2018. The supplied certificate reflects an expiration date of April 20, 2021, so this page labels it honestly as a prior certification cycle.",
-      voice: "Langston earned CompTIA A Plus on April twentieth, 2018. The supplied certificate reflects a prior cycle that ended April twentieth, 2021.",
+      lede: "Earned April 20, 2018. Historical CompTIA A+ certification, expired April 20, 2023.",
+      voice: "Langston earned CompTIA A Plus on April twentieth, 2018. It is a historical certification that expired April twentieth, 2023.",
       actions: [["/credentials/","All credentials","primary"],["/experience/alliance-healthcare-services/","Early career context","secondary"]],
-      content: `${detail(`<h2>Credential scope</h2><p>A+ covers endpoint hardware, operating systems, troubleshooting, networking basics, security, mobile devices, operational procedures, and customer support.</p><h3>Career relevance</h3><p>The credential was earned shortly before the beginning of the long-term healthcare IT role. It represents the technical and troubleshooting foundation that later expanded into networking, security, identity, and systems work.</p><div class="callout"><strong>Status clarity</strong><p>The portfolio does not present the supplied 2018–2021 certificate as current. The knowledge and career milestone remain relevant, but the certification cycle shown on the document has ended.</p></div>`,`<span class="status prior">Prior cycle</span><h3>Credential record</h3><dl><div><dt>Issuer</dt><dd>CompTIA</dd></div><div><dt>Earned</dt><dd>April 20, 2018</dd></div><div><dt>Documented cycle end</dt><dd>April 20, 2021</dd></div><div><dt>Focus</dt><dd>Endpoint and support foundations</dd></div></dl>`)}${nextLinks([["/credentials/comptia-itf/","Earlier credential","CompTIA IT Fundamentals+"],["/experience/alliance-healthcare-services/","Applied context","Healthcare IT role"]])}`
+      content: `${detail(`<h2>Credential scope</h2><p>A+ covers endpoint hardware, operating systems, troubleshooting, networking basics, security, mobile devices, operational procedures, and customer support.</p><h3>Career relevance</h3><p>The credential was earned shortly before the beginning of the long-term healthcare IT role. It represents the technical and troubleshooting foundation that later expanded into networking, security, identity, and systems work.</p><div class="callout"><strong>Status clarity</strong><p>A+ is a historical certification. It was issued April 20, 2018 and expired April 20, 2023.</p></div>`,`<span class="status prior">Expired</span><h3>Credential record</h3><dl><div><dt>Issuer</dt><dd>CompTIA</dd></div><div><dt>Earned</dt><dd>April 20, 2018</dd></div><div><dt>Expired</dt><dd>April 20, 2023</dd></div><div><dt>Status</dt><dd>Historical</dd></div><div><dt>Focus</dt><dd>Endpoint and support foundations</dd></div></dl>`)}${nextLinks([["/credentials/comptia-itf/","Earlier credential","CompTIA IT Fundamentals+"],["/experience/alliance-healthcare-services/","Applied context","Healthcare IT role"]])}`
     },
 
     "credential-itf": {
@@ -357,22 +360,22 @@
 
     "education-mis": {
       title: "University of Memphis",
-      eyebrow: "B.B.A. · Management Information Systems · 2026",
+      eyebrow: "B.B.A. · Management Information Systems · May 2026",
       headline: "Connecting technology decisions to <em>business operations.</em>",
       lede: "The Management Information Systems degree adds business analysis, organizational context, systems thinking, and management perspective to the technical support and certification foundation.",
-      voice: "Langston completed a Bachelor of Business Administration in Management Information Systems at the University of Memphis in 2026.",
+      voice: "Langston completed a Bachelor of Business Administration in Management Information Systems at the University of Memphis in May 2026.",
       actions: [["/credentials/","Credentials and education","primary"],["/recruiter/","Recruiter view","secondary"]],
-      content: `${detail(`<h2>Degree value</h2><p>Management Information Systems sits between business operations and technology delivery. The degree complements hands-on experience by emphasizing how systems support processes, users, controls, decision-making, projects, and organizational goals.</p><h3>Portfolio connection</h3><ul><li>Eora Lab frames configuration decisions around a modeled healthcare organization rather than isolated technical exercises.</li><li>The recruiter view translates technical work into operational value.</li><li>Identity, security, and infrastructure decisions are evaluated through risk, continuity, governance, and stakeholder impact.</li></ul><div class="callout"><strong>Professional objective</strong><p>Use the degree and technical experience together to move from resolving individual incidents toward designing and administering the systems that prevent them.</p></div>`,`<h3>Education record</h3><dl><div><dt>Institution</dt><dd>University of Memphis</dd></div><div><dt>Degree</dt><dd>Bachelor of Business Administration</dd></div><div><dt>Major</dt><dd>Management Information Systems</dd></div><div><dt>Completion</dt><dd>2026</dd></div><div><dt>Location</dt><dd>Memphis, Tennessee</dd></div></dl>`)}${nextLinks([["/education/southwest-tennessee/","Previous degree","Associate of Science"],["/projects/eora-lab/","Applied systems work","Eora Enterprise Lab"]])}`
+      content: `${detail(`<h2>Degree value</h2><p>Management Information Systems sits between business operations and technology delivery. The degree complements hands-on experience by emphasizing how systems support processes, users, controls, decision-making, projects, and organizational goals.</p><h3>Portfolio connection</h3><ul><li>Eora Lab frames configuration decisions around a modeled healthcare organization rather than isolated technical exercises.</li><li>The recruiter view translates technical work into operational value.</li><li>Identity, security, and infrastructure decisions are evaluated through risk, continuity, governance, and stakeholder impact.</li></ul><div class="callout"><strong>Professional objective</strong><p>Use the degree and technical experience together to move from resolving individual incidents toward designing and administering the systems that prevent them.</p></div>`,`<h3>Education record</h3><dl><div><dt>Institution</dt><dd>University of Memphis</dd></div><div><dt>Degree</dt><dd>Bachelor of Business Administration</dd></div><div><dt>Major</dt><dd>Management Information Systems</dd></div><div><dt>Conferred</dt><dd>May 2026</dd></div><div><dt>GPA</dt><dd>3.28</dd></div><div><dt>Accreditation</dt><dd>SACSCOC</dd></div><div><dt>Location</dt><dd>Memphis, Tennessee</dd></div></dl>`)}${nextLinks([["/education/southwest-tennessee/","Previous degree","Associate of Science"],["/projects/eora-lab/","Applied systems work","Eora Enterprise Lab"]])}`
     },
 
     "education-as": {
       title: "Southwest Tennessee Community College",
       eyebrow: "Associate of Science · 2022",
       headline: "A completed foundation for <em>continued academic progression.</em>",
-      lede: "The diploma records an Associate of Science awarded August 11, 2022 by Southwest Tennessee Community College.",
+      lede: "Associate of Science, General Studies – Information Systems (Tennessee Transfer Pathway), awarded August 11, 2022 by Southwest Tennessee Community College. GPA 3.8. SACSCOC accredited.",
       voice: "Langston earned an Associate of Science from Southwest Tennessee Community College on August eleventh, 2022.",
       actions: [["/credentials/","Credentials and education","primary"],["/education/university-of-memphis/","Bachelor's degree","secondary"]],
-      content: `${detail(`<h2>Education milestone</h2><p>The associate degree represents persistence through the early professional career and served as the academic bridge to the University of Memphis Management Information Systems program.</p><h3>Career context</h3><p>The degree was completed while the professional foundation was already being built through healthcare IT work. That combination matters: academic progression did not occur in isolation from real operational experience.</p>`,`<h3>Education record</h3><dl><div><dt>Institution</dt><dd>Southwest Tennessee Community College</dd></div><div><dt>Degree</dt><dd>Associate of Science</dd></div><div><dt>Awarded</dt><dd>August 11, 2022</dd></div><div><dt>Location</dt><dd>Memphis, Tennessee</dd></div></dl>`)}${nextLinks([["/education/university-of-memphis/","Next degree","B.B.A. in MIS"],["/experience/alliance-healthcare-services/","Concurrent career foundation","Healthcare IT experience"]])}`
+      content: `${detail(`<h2>Education milestone</h2><p>The associate degree represents persistence through the early professional career and served as the academic bridge to the University of Memphis Management Information Systems program.</p><h3>Career context</h3><p>The degree was completed while the professional foundation was already being built through healthcare IT work. That combination matters: academic progression did not occur in isolation from real operational experience.</p>`,`<h3>Education record</h3><dl><div><dt>Institution</dt><dd>Southwest Tennessee Community College</dd></div><div><dt>Degree</dt><dd>Associate of Science, General Studies – Information Systems (Tennessee Transfer Pathway)</dd></div><div><dt>Awarded</dt><dd>August 11, 2022</dd></div><div><dt>Résumé conferral</dt><dd>2022</dd></div><div><dt>GPA</dt><dd>3.8</dd></div><div><dt>Accreditation</dt><dd>SACSCOC</dd></div><div><dt>Location</dt><dd>Memphis, Tennessee</dd></div></dl>`)}${nextLinks([["/education/university-of-memphis/","Next degree","B.B.A. in MIS"],["/experience/alliance-healthcare-services/","Concurrent career foundation","Healthcare IT experience"]])}`
     },
 
     services: {
@@ -497,9 +500,155 @@
       actions: [["/education/university-of-memphis/","University of Memphis","primary"],["/credentials/","Credentials","secondary"]],
       content: `${heroCards([
         {title:"M.S. in Information Systems",text:"University of Memphis graduate program. Admitted for Fall 2027, extending the MIS foundation into graduate-level systems, data, and technology management.",tags:["Graduate","Information systems","Fall 2027"],wide:true,status:"Admitted",statusClass:"status current"},
-        {title:"B.B.A. in Management Information Systems",text:"University of Memphis, completed in 2026. Connects business analysis, organizational context, and systems thinking to technical operations.",tags:["Business","Information systems","2026"],href:"/education/university-of-memphis/",wide:true,status:"Completed",statusClass:"status current"},
-        {title:"Associate of Science",text:"Southwest Tennessee Community College, awarded August 11, 2022. Academic bridge from early healthcare IT work to the MIS bachelor's degree.",tags:["Associate degree","2022"],href:"/education/southwest-tennessee/",status:"Awarded",statusClass:"status earned"}
+        {title:"B.B.A. in Management Information Systems",text:"University of Memphis, conferred May 2026. GPA 3.28. SACSCOC accredited. Connects business analysis, organizational context, and systems thinking to technical operations.",tags:["Business","Information systems","May 2026"],href:"/education/university-of-memphis/",wide:true,status:"Completed",statusClass:"status current"},
+        {title:"Associate of Science",text:"Southwest Tennessee Community College. General Studies – Information Systems (Tennessee Transfer Pathway). Awarded August 11, 2022. GPA 3.8. SACSCOC accredited.",tags:["Associate degree","2022"],href:"/education/southwest-tennessee/",status:"Awarded",statusClass:"status earned"}
       ])}`
+    },
+
+    resume: {
+      title: "Résumé",
+      eyebrow: "Langston Brown · Memphis, Tennessee",
+      headline: "Résumé.",
+      lede: "Professional résumé for Langston Brown, an information systems professional in Memphis. Healthcare IT, field engineering, and county-government support, with current cybersecurity certifications.",
+      voice: "Professional résumé for Langston Brown, an information systems professional in Memphis.",
+      compact: true,
+      actions: [["/contact/","Contact","primary"],["/experience/","Experience","secondary"],["/credentials/","Credentials","secondary"]],
+      content: `
+        <section class="section resume-sheet"><div class="inner">
+          <div class="resume-actions">
+            <a class="button primary" href="/resume/langston-brown-resume.pdf" download="langston-brown-resume.pdf" type="application/pdf">Download résumé PDF</a>
+            <a class="button secondary" href="/contact/">Contact</a>
+          </div>
+          <header class="resume-identity">
+            <h2>Langston Brown</h2>
+            <p>Memphis, Tennessee · <a href="https://eoralabs.com/">eoralabs.com</a></p>
+            <p>CompTIA CySA+ (CS0-003) · Security+ (SY0-701) · Network+ (N10-008) · ISC2 Certified in Cybersecurity (CC)</p>
+          </header>
+
+          <h2>Professional summary</h2>
+          <p>IT professional with 7+ years of experience spanning the full technology asset lifecycle — procurement support, provisioning, endpoint deployment, license and inventory management, hardware repair coordination, and secure disposal — across government and HIPAA-regulated healthcare environments. Currently provides on-site Tier I/II IT support for Lakeside Behavioral Health (UHS), a HIPAA-regulated, 400-employee inpatient behavioral health campus. Previously administered Windows Server infrastructure, Active Directory, and Microsoft 365 for a 5,000+ user county government environment, with direct responsibility for endpoint provisioning, MDM enrollment, patch management, and asset inventory documentation. Experienced managing license assignment, device compliance, and configuration standards across multi-site enterprise deployments. Holds CompTIA CySA+, Security+, Network+, and ISC2 CC certifications. Completed a Bachelor of Business Administration in Management Information Systems at the University of Memphis, May 2026. Known for structured, root-cause problem solving, meticulous documentation, and dependable follow-through on customer-facing technical requests.</p>
+
+          <h2>Core competencies</h2>
+          <h3>Attention to detail</h3>
+          <p>Meticulous asset inventory records, configuration documentation, and change logs maintained across a 5,000-user Active Directory environment, where accuracy in device assignment, license tracking, and permission configuration carries direct operational and compliance consequences.</p>
+          <h3>Customer service</h3>
+          <p>Seven years of direct technical service delivery to clinical, administrative, and government personnel across multi-site enterprise environments. Experienced in after-hours incident response, clear communication of solutions, and follow-through to confirmed resolution.</p>
+          <h3>Asset and license lifecycle</h3>
+          <p>Endpoint provisioning, MDM/device enrollment, patch cycles, and hardware lifecycle documentation; Microsoft 365 license allocation and tracking, mailbox provisioning, and MFA configuration across enterprise tenants.</p>
+          <h3>Problem solving</h3>
+          <p>Applies structured, root-cause diagnostic methodology to inventory, provisioning, and infrastructure issues — isolating variables, cross-referencing monitoring data, and implementing targeted fixes that minimize service disruption and downtime.</p>
+
+          <h2>Technical qualifications</h2>
+          <dl class="resume-qualifications">
+            <div><dt>Asset and device management</dt><dd>Endpoint imaging and deployment, MDM/mobile device enrollment, device compliance configuration, hardware lifecycle documentation, asset inventory tracking, patch management.</dd></div>
+            <div><dt>Identity and license management</dt><dd>Active Directory, Group Policy, Microsoft 365 license assignment and harvesting, Exchange Online mailbox provisioning, distribution list management, MFA/RBAC.</dd></div>
+            <div><dt>Operating systems</dt><dd>Windows Server 2016/2019, Windows 10, Windows 11.</dd></div>
+            <div><dt>Virtualization and cloud</dt><dd>VMware vSphere, Hyper-V, Microsoft Azure (foundational), Microsoft 365 administration.</dd></div>
+            <div><dt>Networking and infrastructure</dt><dd>DNS, DHCP, TCP/IP, VLANs, VPN, RDP, SMB, switch port administration, Orion SolarWinds monitoring.</dd></div>
+            <div><dt>Cybersecurity</dt><dd>Endpoint protection, vulnerability management, security hardening, log review, HIPAA compliance.</dd></div>
+            <div><dt>Automation and documentation</dt><dd>PowerShell scripting, automated software deployment, ITIL-aligned incident/change management, knowledge base authoring.</dd></div>
+            <div><dt>Remote and repair support</dt><dd>Citrix thin client support, Bomgar remote support, hardware diagnostics and repair coordination.</dd></div>
+            <div><dt>Languages</dt><dd>English (native). Mandarin Chinese (basic exposure, non-fluent).</dd></div>
+          </dl>
+
+          <h2>Professional experience</h2>
+          <article>
+            <div class="resume-role"><h3>IT Support Technician · Lakeside Behavioral Health (UHS)</h3><time datetime="2026-09">September 2026 – Present</time></div>
+            <p class="resume-meta">Memphis, Tennessee · 40 hours per week · On-site support for a 39-acre, 400-employee behavioral health campus</p>
+            <ul class="resume-list">
+              <li>Provide on-site Tier I/II support as one of two IT staff for a HIPAA-regulated inpatient behavioral health facility, covering endpoints, printers, VoIP phones, and network drops across multiple buildings and clinical units.</li>
+              <li>Troubleshoot Avaya IP phone outages down to the switch port, identifying suspected err-disabled ports and voice VLAN problems, and write escalations to corporate network and telecom teams with MAC addresses, serials, and specific remediation steps.</li>
+              <li>Trace and document physical-layer cabling at IDFs with a tone generator, mapping phone and printer drops to switch ports to build the site's cable map.</li>
+              <li>Audit and asset-tag the multifunction printer fleet across five units, recording IP, serial, firmware, and asset tag, and correct inventory records where they're wrong.</li>
+              <li>Provision new-hire workstations end to end (Dell laptop and dock, multi-monitor setup, Avaya J179), coordinating extension assignment with the PBX administrator.</li>
+              <li>Replace failed hardware on clinical workstations on wheels and document device, network, and hardware details ahead of planned retirements.</li>
+              <li>Resolve password resets, account lockouts, VPN, and SSO access requests for clinical and administrative staff.</li>
+              <li>Designing a SharePoint self-service IT ticketing system (Microsoft Forms/Power Apps, Power Automate alerts, knowledge base, PnP PowerShell deployment), approved by my supervisor, to take routine requests off the IT team.</li>
+            </ul>
+          </article>
+          <article>
+            <div class="resume-role"><h3>Customer Support Technician II · Shelby County Government</h3><time datetime="2024-04">April 2024 – May 2026</time></div>
+            <p class="resume-meta">Memphis, Tennessee · 40 hours per week · On-call rotation every other month</p>
+            <ul class="resume-list">
+              <li>Administered enterprise Windows Server infrastructure, Active Directory, and Microsoft 365 services supporting 5,000+ users, including endpoint asset assignment, organizational unit structure, and license allocation across county departments.</li>
+              <li>Provisioned and enrolled endpoints into device management and MDM platforms, verifying compliance configuration and organizational unit placement upon deployment or domain rejoin — maintaining accurate asset and identity records.</li>
+              <li>Managed Microsoft 365 tenant administration including license assignment and harvesting, Exchange Online mailbox provisioning, distribution list management, and MFA configuration for county personnel.</li>
+              <li>Oversaw endpoint patch management cycles and routine maintenance scheduling across desktops, laptops, and servers to sustain asset availability and operational stability.</li>
+              <li>Troubleshot complex network connectivity failures at the switch level using Orion SolarWinds monitoring, locating devices by MAC address and restoring service with minimal disruption.</li>
+              <li>Authored PowerShell automation scripts for enterprise software deployment, including a script to silently install Oracle Smart View with required runtime dependencies across multiple workstations, reducing manual provisioning overhead.</li>
+              <li>Provided Tier II/III technical guidance to end users and junior staff, escalating complex issues appropriately and documenting resolutions for team knowledge base use.</li>
+              <li>Created and maintained technical documentation, procedural guides, and knowledge base articles supporting operational continuity and audit readiness.</li>
+            </ul>
+          </article>
+          <article>
+            <div class="resume-role"><h3>IT Field Engineer · eResources, LLC</h3><time datetime="2023-04">April 2023 – August 2023</time></div>
+            <p class="resume-meta">Memphis, Tennessee · 40 hours per week · Travel required to multiple client sites across the Memphis metro area</p>
+            <ul class="resume-list">
+              <li>Installed, configured, and deployed Windows Server and client systems for healthcare, construction, and small business clients — assessing environments to determine appropriate hardware and configuration standards.</li>
+              <li>Performed system imaging, domain joins, and endpoint provisioning for newly deployed workstations and servers, applying Group Policy and role-based access controls to enforce compliance requirements.</li>
+              <li>Diagnosed and resolved network outages, firewall misconfigurations, and connectivity issues across multi-site client environments with minimal downtime.</li>
+              <li>Supported Citrix-based thin client environments running Epic EHR for a Baptist Memorial Hospital-affiliated clinic network, troubleshooting application delivery and endpoint configuration.</li>
+              <li>Maintained detailed service logs and resolution records supporting accurate client billing and service continuity documentation.</li>
+            </ul>
+          </article>
+          <article>
+            <div class="resume-role"><h3>IT Technician · Alliance Healthcare Services</h3><time datetime="2018-11">November 2018 – April 2023</time></div>
+            <p class="resume-meta">Memphis, Tennessee · 40 hours per week · On-call one week every two weeks · Multiple clinic locations</p>
+            <ul class="resume-list">
+              <li>Maintained asset inventory, hardware lifecycle documentation, and system configuration records supporting HIPAA compliance and operational visibility across multiple clinic locations.</li>
+              <li>Enrolled and configured mobile devices into the organization's MDM platform, managing device compliance and configuration standards enterprise-wide.</li>
+              <li>Provisioned and managed user accounts, configured MFA, and resolved identity and access issues for clinical and administrative staff across all clinic sites.</li>
+              <li>Deployed endpoints, managed patch cycles, and performed endpoint hardening to maintain security and regulatory compliance in a HIPAA-regulated environment.</li>
+              <li>Provided after-hours on-call incident response during outages and upgrades, restoring service continuity across clinic sites outside normal duty hours.</li>
+            </ul>
+          </article>
+
+          <h2>Additional employment — 2023 to 2024</h2>
+          <p>While completing coursework toward a Bachelor of Business Administration at the University of Memphis: Package Handler, FedEx Ground (part-time); Delivery Driver, Domino's Pizza (part-time); Grocery Associate, The Fresh Market (part-time) — roles emphasizing high-volume accuracy, time-sensitive processing, and direct customer service.</p>
+
+          <h2>Education</h2>
+          <article>
+            <div class="resume-role"><h3>Bachelor of Business Administration, Management Information Systems</h3><time datetime="2026-05">Conferred May 2026</time></div>
+            <p class="resume-meta">University of Memphis, Memphis, Tennessee · GPA 3.28 · SACSCOC accredited</p>
+          </article>
+          <article>
+            <div class="resume-role"><h3>Associate of Science, General Studies – Information Systems (Tennessee Transfer Pathway)</h3><time datetime="2022">Conferred 2022</time></div>
+            <p class="resume-meta">Southwest Tennessee Community College, Memphis, Tennessee · GPA 3.8 · SACSCOC accredited</p>
+          </article>
+
+          <h2>Professional certifications</h2>
+          <ul class="resume-list">
+            <li>CompTIA Cybersecurity Analyst+ (CySA+), CS0-003. Issued May 10, 2025. Expires May 10, 2028.</li>
+            <li>CompTIA Security+, SY0-701. Issued November 17, 2024. Expires November 17, 2027.</li>
+            <li>CompTIA Network+, N10-008. Issued December 15, 2023. Expires December 15, 2026.</li>
+            <li>ISC2 Certified in Cybersecurity (CC). Issued February 1, 2024. Expires January 31, 2027.</li>
+            <li>CompTIA A+ (historical). Issued April 20, 2018. Expired April 20, 2023.</li>
+          </ul>
+          <h2>References</h2>
+          <p>References available upon request.</p>
+        </div></section>`
+    },
+
+    "experience-lakeside": {
+      title: "Lakeside Behavioral Health",
+      eyebrow: "IT Support Technician · September 2026 – present",
+      headline: "On-site support for a <em>clinical campus.</em>",
+      lede: "Current role: IT Support Technician at Lakeside Behavioral Health (UHS) in Memphis, providing on-site Tier I/II support for a HIPAA-regulated inpatient behavioral health campus.",
+      voice: "Langston is an IT Support Technician at Lakeside Behavioral Health, a UHS inpatient behavioral health campus in Memphis, since September 2026.",
+      actions: [["/resume/","Résumé","primary"],["/experience/","All experience","secondary"]],
+      content: `${detail(`
+        <h2>Role context</h2><p>On-site Tier I/II support as one of two IT staff for a HIPAA-regulated, 39-acre, 400-employee inpatient behavioral health facility. The work covers endpoints, printers, VoIP phones, and network drops across multiple buildings and clinical units.</p>
+        <h3>Responsibilities</h3><ul>
+          <li>Troubleshoot Avaya IP phone outages down to the switch port, including suspected err-disabled ports and voice VLAN problems, and write escalations to corporate network and telecom teams with MAC addresses, serials, and remediation steps.</li>
+          <li>Trace and document physical-layer cabling at IDFs with a tone generator, mapping phone and printer drops to switch ports.</li>
+          <li>Audit and asset-tag the multifunction printer fleet across five units, recording IP, serial, firmware, and asset tag, and correct inventory records where they are wrong.</li>
+          <li>Provision new-hire workstations end to end, including a Dell laptop and dock, multi-monitor setup, and Avaya J179, and coordinate extension assignment with the PBX administrator.</li>
+          <li>Replace failed hardware on clinical workstations on wheels and document device, network, and hardware details ahead of planned retirements.</li>
+          <li>Resolve password resets, account lockouts, VPN, and SSO access requests for clinical and administrative staff.</li>
+        </ul>
+        <div class="callout"><strong>In progress</strong><p>Designing a SharePoint self-service IT ticketing system with Microsoft Forms, Power Apps, Power Automate alerts, a knowledge base, and PnP PowerShell deployment. The supervisor approved the effort so routine requests can come off the IT team.</p></div>
+      `,`<span class="status current">Current</span><h3>Environment profile</h3><dl><div><dt>Organization</dt><dd>Lakeside Behavioral Health (UHS)</dd></div><div><dt>Sector</dt><dd>Inpatient behavioral health</dd></div><div><dt>Role</dt><dd>IT Support Technician</dd></div><div><dt>Dates</dt><dd>September 2026 – present</dd></div><div><dt>Schedule</dt><dd>40 hours per week, on site</dd></div><div><dt>Campus</dt><dd>39 acres, about 400 employees</dd></div><div><dt>Compliance context</dt><dd>HIPAA-regulated operations</dd></div></dl>`)}
+      ${nextLinks([["/resume/","Full résumé","Résumé and PDF"],["/experience/shelby-county-government/","Previous role","Shelby County Government"]])}`
     },
 
     notfound: {

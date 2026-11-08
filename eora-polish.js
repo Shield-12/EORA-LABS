@@ -66,17 +66,17 @@
     ["This recruiter briefing summarizes Langston Brown's experience, credentials, current technical lab, and target roles in systems administration, identity, endpoint administration, cybersecurity operations, and healthcare information technology.", "This recruiter briefing summarizes my experience, credentials, current technical lab, and target roles in systems administration, identity, endpoint administration, cybersecurity operations, and healthcare information technology."],
     ["Langston's background began with hands-on support in HIPAA-regulated clinical settings, expanded into field engineering and customer deployments, and continued in enterprise public-sector service delivery.", "My background began with hands-on support in HIPAA-regulated clinical settings, expanded into field engineering and customer deployments, and continued in enterprise public-sector service delivery."],
     ["The portfolio contains dedicated pages for each employer, project, credential, and education milestone so a reviewer can move from claims to supporting context.", "I maintain dedicated pages for each employer, project, credential, and education milestone so a reviewer can move from claims to supporting context."],
-    ["At Shelby County Government, Langston supported enterprise users across Active Directory, Microsoft 365, endpoints, mobile devices, printers, account access, dispatch, documentation, and on-call operations.", "At Shelby County Government, I supported enterprise users across Active Directory, Microsoft 365, endpoints, mobile devices, printers, account access, dispatch, documentation, and on-call operations."],
+    ["At Shelby County Government, Langston worked as a Customer Support Technician II, supporting enterprise users across Active Directory, Microsoft 365, endpoints, mobile devices, printers, account access, dispatch, documentation, and an every-other-month on-call rotation.", "At Shelby County Government, I worked as a Customer Support Technician II, supporting enterprise users across Active Directory, Microsoft 365, endpoints, mobile devices, printers, account access, dispatch, documentation, and an every-other-month on-call rotation."],
     ["This role demonstrates enterprise service delivery and operational discipline. It should not be misrepresented as direct ownership of county servers or architecture.", "I use this role to demonstrate enterprise service delivery and operational discipline. I do not present it as direct ownership of county servers or architecture."],
     ["At eResources, Langston worked as an IT Field Engineer deploying and supporting Windows endpoints and server environments while troubleshooting DNS, VPN, firewall, application, and network connectivity problems.", "At eResources, I worked as an IT Field Engineer deploying and supporting Windows endpoints and server environments while troubleshooting DNS, VPN, firewall, application, and network connectivity problems."],
     ["At Alliance Healthcare Services, Langston supported HIPAA-regulated clinical environments, user access, endpoints, mobile devices, Citrix thin clients, clinical applications, printers, and after-hours incidents.", "At Alliance Healthcare Services, I supported HIPAA-regulated clinical environments, user access, endpoints, mobile devices, Citrix thin clients, clinical applications, printers, and after-hours incidents."],
     ["Langston earned the CompTIA Cybersecurity Analyst Plus certification on May tenth, 2025. The current cycle runs through May tenth, 2028.", "I earned the CompTIA Cybersecurity Analyst Plus certification on May tenth, 2025. The current cycle runs through May tenth, 2028."],
     ["Langston holds a current CompTIA Security Plus certification based on the SY0-701 exam, earned November seventeenth, 2024 and valid through November seventeenth, 2027.", "I hold a current CompTIA Security Plus certification based on the SY0-701 exam, earned November seventeenth, 2024 and valid through November seventeenth, 2027."],
     ["Langston earned CompTIA Network Plus on December fifteenth, 2023. The supplied credential is current through December fifteenth, 2026.", "I earned CompTIA Network Plus on December fifteenth, 2023. The supplied credential is current through December fifteenth, 2026."],
-    ["Langston earned CompTIA A Plus on April twentieth, 2018. The supplied certificate reflects a prior cycle that ended April twentieth, 2021.", "I earned CompTIA A Plus on April twentieth, 2018. The supplied certificate reflects a prior cycle that ended April twentieth, 2021."],
+    ["Langston earned CompTIA A Plus on April twentieth, 2018. It is a historical certification that expired April twentieth, 2023.", "I earned CompTIA A Plus on April twentieth, 2018. It is a historical certification that expired April twentieth, 2023."],
     ["Langston earned CompTIA IT Fundamentals Plus on August sixteenth, 2017, making it the first formal certification milestone in the portfolio.", "I earned CompTIA IT Fundamentals Plus on August sixteenth, 2017, making it the first formal certification milestone in the portfolio."],
     ["Langston has held the ISC2 Certified in Cybersecurity credential since 2024. The current certificate cycle runs through January thirty-first, 2027.", "I have held the ISC2 Certified in Cybersecurity credential since 2024. The current certificate cycle runs through January thirty-first, 2027."],
-    ["Langston completed a Bachelor of Business Administration in Management Information Systems at the University of Memphis in 2026.", "I completed a Bachelor of Business Administration in Management Information Systems at the University of Memphis in 2026."],
+    ["Langston completed a Bachelor of Business Administration in Management Information Systems at the University of Memphis in May 2026.", "I completed a Bachelor of Business Administration in Management Information Systems at the University of Memphis in May 2026."],
     ["Langston earned an Associate of Science from Southwest Tennessee Community College on August eleventh, 2022.", "I earned an Associate of Science from Southwest Tennessee Community College on August eleventh, 2022."],
     ["Eora Labs is accepting limited pilot engagements for small organizations in the Memphis area. Services begin with discovery and a written scope rather than a one-size-fits-all infrastructure package.", "Through Eora Labs, I am accepting limited pilot engagements for small organizations in the Memphis area. Services begin with discovery and a written scope rather than a one-size-fits-all infrastructure package."],
     ["Langston Brown brings more than seven years of IT experience across county government, healthcare, field engineering, endpoint operations, Microsoft 365 administration, Active Directory, PowerShell automation, and technical documentation.", "I bring more than seven years of IT experience across county government, healthcare, field engineering, endpoint operations, Microsoft 365 administration, Active Directory, PowerShell automation, and technical documentation."],
@@ -127,7 +127,7 @@
     event.preventDefault();
     event.stopImmediatePropagation();
 
-    localStorage.setItem("eoraAudio", "on");
+    try { localStorage.setItem("eoraSounds", "on"); } catch (error) { /* Storage can be blocked. */ }
     document.querySelector("#enterSilent")?.click();
 
     const audioToggle = document.querySelector("#audioToggle");
@@ -143,7 +143,7 @@
 
     const audioHint = document.querySelector(".audio-hint");
     if (audioHint) {
-      audioHint.textContent = "Generative ambient music and subtle interface feedback. Use the audio control at any time.";
+      audioHint.textContent = "Optional interaction sounds stay off until you turn them on. Hovering and scrolling stay quiet.";
     }
 
     const shortcutPanel = document.querySelector("#shortcutPanel");
@@ -164,10 +164,16 @@
 
     const volume = document.querySelector("#volumeControl");
     if (volume) {
-      const storedRaw = localStorage.getItem("eoraVolume");
-      const storedVolume = storedRaw === null ? Number.NaN : Number(storedRaw);
-      volume.value = Number.isFinite(storedVolume) && storedVolume >= 0 && storedVolume <= 100 ? String(storedVolume) : "48";
-      volume.addEventListener("input", () => localStorage.setItem("eoraVolume", volume.value));
+      try {
+        const storedRaw = localStorage.getItem("eoraVolume");
+        const storedVolume = storedRaw === null ? Number.NaN : Number(storedRaw);
+        volume.value = Number.isFinite(storedVolume) && storedVolume >= 0 && storedVolume <= 100 ? String(storedVolume) : "22";
+        volume.addEventListener("input", () => {
+          try { localStorage.setItem("eoraVolume", volume.value); } catch (error) { /* Storage can be blocked. */ }
+        });
+      } catch (error) {
+        volume.value = "22";
+      }
     }
 
     const footerCopy = document.querySelector(".site-footer > div:first-child > p");
