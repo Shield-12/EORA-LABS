@@ -178,7 +178,7 @@
 
     const footerCopy = document.querySelector(".site-footer > div:first-child > p");
     if (footerCopy) {
-      footerCopy.innerHTML = `<span class="footer-credit-line">Crafted by me, Langston Brown.</span><span class="footer-credit-line">Developed with the assistance of OpenAI ChatGPT.</span>`;
+      footerCopy.innerHTML = `<span class="footer-credit-line">Crafted by me, Langston Brown.</span><span class="footer-credit-line">Created with the assistance of Grok Bots by xAI</span>`;
     }
 
     const style = document.createElement("style");
